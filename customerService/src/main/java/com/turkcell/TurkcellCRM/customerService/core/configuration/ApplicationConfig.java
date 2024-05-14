@@ -11,6 +11,7 @@ import java.util.Locale;
 
 @Configuration
 public class ApplicationConfig {
+
     @Bean
     public ResourceBundleMessageSource bundleMessageSource()
     {
@@ -18,6 +19,7 @@ public class ApplicationConfig {
         source.setBasename("messages");
         return source;
     }
+
     @Bean
     public LocaleResolver localeResolver()
     {
@@ -29,7 +31,4 @@ public class ApplicationConfig {
     public ModelMapper getModelMapper(){
         return new ModelMapper();
     }
-
-
-
 }

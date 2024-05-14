@@ -1,4 +1,3 @@
-
 spring:
   application:
     name: customerService
@@ -7,7 +6,7 @@ spring:
   cloud:
     config:
       profile: dev
-#      kafka: producer: bootstrap-servers: localhost:9092 key-serializer: org.apache.kafka.common.serialization.StringSerializer value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      #kafka: producer: bootstrap-servers: localhost:9092 key-serializer: org.apache.kafka.common.serialization.StringSerializer value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 #eureka:
 #  client:
@@ -18,10 +17,21 @@ spring:
 #  instance:
 #    instance-id: ${spring.application.name}:${instanceId:${random.value}}
 #    preferIpAddress: true
+
+
 #server:
 #  port: 9009
 #  #normalde burası 0 olmalı her instance için otomatik port ataması yapar
 #spring:
+#  kafka:
+#    producer:
+#      bootstrap-servers: localhost:9092
+#      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+#      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+#  cloud:
+#    config:
+#      enabled: false
+#
 #  application:
 #    name: customer-service
 #  datasource:
