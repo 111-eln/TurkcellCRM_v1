@@ -1,0 +1,1 @@
+Turkcell Geleceği Yazanlar-Gençlere Yatırım Geleceğe Yazılım programı kapsamında [Kodlama.io_SRS_Updated.docx](https://github.com/mhmtgks/TurkcellCRM/files/15313248/Kodlama.io_SRS_Updated.docx) SRS belgesine uygun olarak sadece backend kısmı hazırlanmış bir mikroservis Telekominikasyon CRM yazılımıdır. 
