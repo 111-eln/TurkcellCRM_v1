@@ -2,6 +2,7 @@ package com.turkcell.TurkcellCRM.orderService.business.concretes;
 
 import com.turkcell.TurkcellCRM.commonPackage.OrderCreatedEvent;
 import com.turkcell.TurkcellCRM.orderService.business.abstracts.OrderService;
+import com.turkcell.TurkcellCRM.orderService.business.rules.OrderBusinnesRules;
 import com.turkcell.TurkcellCRM.orderService.core.mapping.ModelMapperService;
 import com.turkcell.TurkcellCRM.orderService.dataAccess.OrderRepository;
 import com.turkcell.TurkcellCRM.orderService.dtos.requests.create.CreateOrderRequest;
@@ -22,6 +23,7 @@ public class OrderManager implements OrderService {
     private ModelMapperService modelMapperService;
     private OrderRepository orderRepository;
     private OrderProducer orderProducer;
+    private OrderBusinnesRules orderBusinnesRules;
     @Override
     public CreateOrderResponse add(CreateOrderRequest orderRequest) {
         Order order=modelMapperService.forRequest().map(orderRequest, Order.class);
@@ -45,6 +47,8 @@ public class OrderManager implements OrderService {
 
     @Override
     public UpdateOrderResponse update(UpdateOrderRequest updateOrderRequest, int orderId) {
+       orderBusinnesRules.orderShouldBeExists(orderId);
+
         Order order=orderRepository.findById(orderId).orElse(null);
         order.setId(orderId);
         Order dbOrder=orderRepository.save(order);
