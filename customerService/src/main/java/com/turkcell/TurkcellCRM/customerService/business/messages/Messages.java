@@ -20,6 +20,6 @@ public class Messages {
     }
 
     public static class MernisMessages{
-        public static final String CUSTOMER_NOT_EXISTS = "individualCustomersNotFound";
+        public static final String CUSTOMER_NOT_EXISTS = "individualCustomersNotFoundForMernis";
     }
 }

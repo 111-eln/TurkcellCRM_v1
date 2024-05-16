@@ -32,7 +32,7 @@ public class IndividualCustomerController {
         return customerService.update(updateCustomerRequest,customerId);
     }
 
-    @GetMapping("/{id}")  //TODO: getById şeklinde bir tanımlama eklenmeli mi
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public GetIndividualCustomerResponse getById(@PathVariable int id) {
         return customerService.getById(id);

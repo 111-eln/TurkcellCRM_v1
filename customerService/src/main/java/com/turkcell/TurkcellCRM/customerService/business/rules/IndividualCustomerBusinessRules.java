@@ -1,6 +1,6 @@
 package com.turkcell.TurkcellCRM.customerService.business.rules;
 
-import com.turkcell.TurkcellCRM.customerService.adapter.IndividualCustomerCheck;
+import com.turkcell.TurkcellCRM.customerService.adapter.MernisService;
 import com.turkcell.TurkcellCRM.customerService.business.messages.Messages;
 import com.turkcell.TurkcellCRM.customerService.core.crossCuttingConcerns.exceptions.types.BusinessException;
 import com.turkcell.TurkcellCRM.customerService.dataAccess.IndividualCustomerRepository;
@@ -16,7 +16,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class IndividualCustomerBusinessRules {
     private final IndividualCustomerRepository individualCustomerRepository;
-    private final IndividualCustomerCheck individualCustomerCheck;
+    private final MernisService individualCustomerCheck;
     public void customerShouldBeExists(int customerId) {
         Optional<IndividualCustomer> foundOptionalCustomer = individualCustomerRepository.findById(customerId);
         if (foundOptionalCustomer.isEmpty()) {
@@ -39,7 +39,8 @@ public class IndividualCustomerBusinessRules {
     }
 
     public void checkMernis(CreateIndividualCustomerRequest createIndividualCustomerRequest){
-        if (!individualCustomerCheck.checkIsRealPerson(createIndividualCustomerRequest)){
+        boolean deneme = individualCustomerCheck.checkIsRealPerson(createIndividualCustomerRequest);
+        if (!deneme){
             throw new BusinessException(Messages.MernisMessages.CUSTOMER_NOT_EXISTS);
         }
     }
