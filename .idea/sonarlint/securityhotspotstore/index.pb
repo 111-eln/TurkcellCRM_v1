@@ -1,10 +1,6 @@
 
-è
-_customerService/src/main/java/com/turkcell/TurkcellCRM/customerService/adapter/MernisCheck.java,5\4\543dac4e99985584a0e8c1533b9be7e7b4bb2fdb
 G
 identityService/pom.xml,9\c\9ce1770e5c6cc36fd3866a2a5513a488990ebb2a
-õ
-kcustomerService/src/main/java/com/turkcell/TurkcellCRM/customerService/adapter/IndividualCustomerCheck.java,1\2\126e1d8c9ef35d27662412907c480d188e1ae589
 G
 customerService/pom.xml,1\c\1cb24ea706388e4c4c35b79c5933f088a560c9fc
 ñ
