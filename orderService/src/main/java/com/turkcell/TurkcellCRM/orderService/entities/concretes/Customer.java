@@ -67,4 +67,6 @@ public class Customer extends BaseEntity {
     @OneToMany(mappedBy = "customer")
     private List<Address> addresses;
 
+    public Customer(String ass, String hghg, String ff, String date, String male, String sdd, String fddf, String number, String mail, String number1, String number2, String number3) {
+    }
 }

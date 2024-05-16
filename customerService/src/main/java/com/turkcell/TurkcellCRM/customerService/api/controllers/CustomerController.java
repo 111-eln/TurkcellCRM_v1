@@ -10,6 +10,7 @@ import com.turkcell.TurkcellCRM.customerService.dtos.response.create.CreateCusto
 import com.turkcell.TurkcellCRM.customerService.dtos.response.get.GetAllCustomerResponse;
 import com.turkcell.TurkcellCRM.customerService.dtos.response.get.GetCustomerResponse;
 import com.turkcell.TurkcellCRM.customerService.dtos.response.update.UpdateCustomerResponse;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -39,8 +40,10 @@ public class CustomerController {
     @CrossOrigin
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CreateCustomerResponse add(@Valid @RequestBody CreateCustomerRequest createCustomerRequest) {
-        return customerService.add(createCustomerRequest);
+    public CreateCustomerResponse add(@Valid @RequestBody CreateCustomerRequest createCustomerRequest,
+                                      @RequestHeader("Authorization") String request) {
+
+        return customerService.add(createCustomerRequest,request);
     }
 
     @PutMapping("/{customerId}")

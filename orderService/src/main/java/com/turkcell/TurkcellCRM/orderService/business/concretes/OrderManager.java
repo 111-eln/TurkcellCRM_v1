@@ -24,6 +24,14 @@ public class OrderManager implements OrderService {
     private OrderProducer orderProducer;
     @Override
     public CreateOrderResponse add(CreateOrderRequest orderRequest) {
+        //todo:silincek
+        if (orderRequest.getAddress().getCity().length() < 3 || orderRequest.getAddress().getCity().length() > 14) {
+            throw new IllegalArgumentException("Address length must be between 3 and 14 characters");
+        }
+
+
+
+
         Order order=modelMapperService.forRequest().map(orderRequest, Order.class);
         Order dbOrder=orderRepository.save(order);
         OrderCreatedEvent orderCreatedEvent=modelMapperService.forResponse().map(dbOrder,OrderCreatedEvent.class);

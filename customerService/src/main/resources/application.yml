@@ -1,12 +1,56 @@
-
+eureka:
+  client:
+    fetchRegistry: true
+    registerWithEureka: true
+    serviceUrl:
+      defaultZone: http://localhost:9020/eureka
+  instance:
+    instance-id: ${spring.application.name}:${instanceId:${random.value}}
+    preferIpAddress: true
+server:
+  port: 9009
+  #normalde burası 0 olmalı her instance için otomatik port ataması yapar
 spring:
-  application:
-    name: customerService
-  config:
-    import: configserver:http://localhost:8052/
   cloud:
     config:
-      profile: dev
+      enabled: false
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: customerService
+  datasource:
+    url: jdbc:postgresql://localhost:5432/crmTurkcellCustomerdb
+    username: postgres
+    password: 12345
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+      javax:
+        persistence:
+          validation:
+            mode: none
+    show-sql: true
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+  springdoc:
+    swagger-ui:
+      disable-swagger-default-url: true
+#
+#spring:
+#  application:
+#    name: customerService
+#  config:
+#    import: configserver:http://localhost:8052/
+#  cloud:
+#    config:
+#      profile: dev
 #      kafka: producer: bootstrap-servers: localhost:9092 key-serializer: org.apache.kafka.common.serialization.StringSerializer value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
 
 #eureka:

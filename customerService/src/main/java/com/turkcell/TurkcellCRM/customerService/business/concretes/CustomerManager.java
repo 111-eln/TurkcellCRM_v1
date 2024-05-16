@@ -2,10 +2,13 @@ package com.turkcell.TurkcellCRM.customerService.business.concretes;
 
 
 import com.turkcell.TurkcellCRM.customerService.business.abstracts.CustomerService;
+import com.turkcell.TurkcellCRM.customerService.business.messages.CustomerMessages;
 import com.turkcell.TurkcellCRM.customerService.business.rules.CustomerBusinessRules;
 
 import com.turkcell.TurkcellCRM.customerService.clients.IdentityServiceClient;
 import com.turkcell.TurkcellCRM.customerService.clients.OrderServiceClient;
+import com.turkcell.TurkcellCRM.customerService.clients.TokenControlClient;
+import com.turkcell.TurkcellCRM.customerService.core.crossCuttingConcerns.exceptions.types.BusinessException;
 import com.turkcell.TurkcellCRM.customerService.core.crossCuttingConcerns.mapping.ModelMapperService;
 import com.turkcell.TurkcellCRM.customerService.dataAccess.CustomerRepository;
 import com.turkcell.TurkcellCRM.customerService.dtos.request.CreateUserJwtRequest;
@@ -20,6 +23,7 @@ import com.turkcell.TurkcellCRM.customerService.dtos.response.get.GetCustomerRes
 import com.turkcell.TurkcellCRM.customerService.dtos.response.update.UpdateCustomerResponse;
 import com.turkcell.TurkcellCRM.customerService.entities.concretes.Customer;
 import com.turkcell.TurkcellCRM.customerService.kafka.producers.CustomerProducer;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +40,7 @@ public class CustomerManager implements CustomerService {
     private CustomerProducer customerProducer;
     private OrderServiceClient orderServiceClient;
     private IdentityServiceClient identityServiceClient;
+    private TokenControlClient tokenControlClient;
 
     @Override
     public List<SearchCustomerResponse> search() {
@@ -50,7 +55,12 @@ public class CustomerManager implements CustomerService {
     }
 
     @Override
-    public CreateCustomerResponse add(CreateCustomerRequest createCustomerRequest) {
+    public CreateCustomerResponse add(CreateCustomerRequest createCustomerRequest, String request) {
+        if(!tokenControlClient.tokenControl(request.substring("Bearer ".length()))){
+            throw new BusinessException("You are not admin");
+
+        }
+
         customerBusinnesRules.customerAlreadyExists(createCustomerRequest.getNationalityNumber());
         Customer customer = modelMapperService.forRequest().map(createCustomerRequest, Customer.class);
         customer.setCreatedDate(LocalDateTime.now());

@@ -6,4 +6,5 @@ import com.turkcell.TurkcellCRM.identityService.services.dtos.RegisterRequest;
 public interface AuthService {
     void register(RegisterRequest request);
     String login(LoginRequest request);
+    boolean tokenControl(String token);
 }

@@ -2,6 +2,7 @@ package com.turkcell.TurkcellCRM.orderService.entities.concretes;
 
 import com.turkcell.TurkcellCRM.commonPackage.BaseEntity;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,6 +20,7 @@ public class Address extends BaseEntity {
 
     @Column(name = "street")
     @NotNull
+    @Size(min=3,max=16)
     private String street;
 
     @Column(name = "houseNumber")

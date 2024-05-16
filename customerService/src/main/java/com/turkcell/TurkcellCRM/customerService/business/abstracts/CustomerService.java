@@ -10,6 +10,8 @@ import com.turkcell.TurkcellCRM.customerService.dtos.response.create.CreateCusto
 import com.turkcell.TurkcellCRM.customerService.dtos.response.get.GetAllCustomerResponse;
 import com.turkcell.TurkcellCRM.customerService.dtos.response.get.GetCustomerResponse;
 import com.turkcell.TurkcellCRM.customerService.dtos.response.update.UpdateCustomerResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 import java.util.List;
 
@@ -17,7 +19,7 @@ public interface CustomerService {
     //todo response ve request yaz
     List<SearchCustomerResponse> search();
     String getJwt(CreateUserJwtRequest userInfo);
-    CreateCustomerResponse add(CreateCustomerRequest customer);
+    CreateCustomerResponse add(CreateCustomerRequest customer, String authorizationHeader);// HttpServletRequest request);
     void delete(int id);
     GetCustomerResponse getById(int id);
     UpdateCustomerResponse update(UpdateCustomerRequest updateCustomerRequest, int customerId);
