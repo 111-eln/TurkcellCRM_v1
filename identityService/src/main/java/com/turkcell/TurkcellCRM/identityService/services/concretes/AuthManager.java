@@ -42,4 +42,10 @@ public class AuthManager implements AuthService {
 
         return jwtService.generateToken(user.getUsername(), user.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList());
     }
+
+    @Override
+    public boolean tokenControl(String token) {
+        String username=jwtService.extractUsername(token);
+        return jwtService.validateToken(token,username);
+    }
 }
