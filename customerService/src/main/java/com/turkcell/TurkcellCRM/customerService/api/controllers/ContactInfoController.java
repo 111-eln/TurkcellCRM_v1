@@ -4,10 +4,10 @@ package com.turkcell.TurkcellCRM.customerService.api.controllers;
 import com.turkcell.TurkcellCRM.customerService.business.abstracts.ContactInfoService;
 import com.turkcell.TurkcellCRM.customerService.dtos.request.create.CreateContactInfoRequest;
 import com.turkcell.TurkcellCRM.customerService.dtos.request.update.UpdateContactInfoRequest;
-import com.turkcell.TurkcellCRM.customerService.dtos.response.create.CreateContactInfoResponse;
+import com.turkcell.TurkcellCRM.customerService.dtos.response.create.CreatedContactInfoResponse;
 import com.turkcell.TurkcellCRM.customerService.dtos.response.get.GetAllContactInfoResponse;
 import com.turkcell.TurkcellCRM.customerService.dtos.response.get.GetContactInfoResponse;
-import com.turkcell.TurkcellCRM.customerService.dtos.response.update.UpdateContactInfoResponse;
+import com.turkcell.TurkcellCRM.customerService.dtos.response.update.UpdatedContactInfoResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,13 +22,13 @@ public class ContactInfoController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CreateContactInfoResponse add(@Valid @RequestBody CreateContactInfoRequest createContactInfoRequest) {
+    public CreatedContactInfoResponse add(@Valid @RequestBody CreateContactInfoRequest createContactInfoRequest) {
         return contactInfoService.add(createContactInfoRequest);
     }
 
     @PutMapping("/{contactInfoId}")
     @ResponseStatus(HttpStatus.OK)
-    public UpdateContactInfoResponse update(@Valid @RequestBody UpdateContactInfoRequest updateContactInfoRequest, @PathVariable int contactInfoId) {
+    public UpdatedContactInfoResponse update(@Valid @RequestBody UpdateContactInfoRequest updateContactInfoRequest, @PathVariable int contactInfoId) {
         return contactInfoService.update(updateContactInfoRequest,contactInfoId);
     }
 

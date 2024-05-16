@@ -3,10 +3,10 @@ package com.turkcell.TurkcellCRM.customerService.api.controllers;
 import com.turkcell.TurkcellCRM.customerService.business.abstracts.AddressService;
 import com.turkcell.TurkcellCRM.customerService.dtos.request.create.CreateAddressRequest;
 import com.turkcell.TurkcellCRM.customerService.dtos.request.update.UpdateAddressRequest;
-import com.turkcell.TurkcellCRM.customerService.dtos.response.create.CreateAddressResponse;
+import com.turkcell.TurkcellCRM.customerService.dtos.response.create.CreatedAddressResponse;
 import com.turkcell.TurkcellCRM.customerService.dtos.response.get.GetAddressResponse;
 import com.turkcell.TurkcellCRM.customerService.dtos.response.get.GetAllAddressResponse;
-import com.turkcell.TurkcellCRM.customerService.dtos.response.update.UpdateAddressResponse;
+import com.turkcell.TurkcellCRM.customerService.dtos.response.update.UpdatedAddressResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,13 +22,13 @@ public class AddressController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CreateAddressResponse add(@Valid @RequestBody CreateAddressRequest createAddressRequest) {
+    public CreatedAddressResponse add(@Valid @RequestBody CreateAddressRequest createAddressRequest) {
         return addressService.add(createAddressRequest);
     }
 
     @PutMapping("/{addressId}")
     @ResponseStatus(HttpStatus.OK)
-    public UpdateAddressResponse update(@Valid @RequestBody UpdateAddressRequest updateAddressRequest, @PathVariable int addressId) {
+    public UpdatedAddressResponse update(@Valid @RequestBody UpdateAddressRequest updateAddressRequest, @PathVariable int addressId) {
         return addressService.update(updateAddressRequest,addressId);
     }
 

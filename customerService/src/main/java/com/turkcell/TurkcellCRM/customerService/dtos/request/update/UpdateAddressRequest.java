@@ -1,11 +1,11 @@
 package com.turkcell.TurkcellCRM.customerService.dtos.request.update;
 import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 public class UpdateAddressRequest {
     @NotNull
     private String city;

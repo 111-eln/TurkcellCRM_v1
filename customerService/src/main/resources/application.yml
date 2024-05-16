@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 eureka:
   client:
     fetchRegistry: true
@@ -10,9 +11,12 @@ eureka:
 server:
   port: 9009
   #normalde burası 0 olmalı her instance için otomatik port ataması yapar
+=======
+>>>>>>> eb17ef4439472449f7cac7365fe65111d38cf4ed
 spring:
   cloud:
     config:
+<<<<<<< HEAD
       enabled: false
   main:
     allow-bean-definition-overriding: true
@@ -52,6 +56,10 @@ spring:
 #    config:
 #      profile: dev
 #      kafka: producer: bootstrap-servers: localhost:9092 key-serializer: org.apache.kafka.common.serialization.StringSerializer value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+=======
+      profile: dev
+      #kafka: producer: bootstrap-servers: localhost:9092 key-serializer: org.apache.kafka.common.serialization.StringSerializer value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+>>>>>>> eb17ef4439472449f7cac7365fe65111d38cf4ed
 
 #eureka:
 #  client:
@@ -62,10 +70,21 @@ spring:
 #  instance:
 #    instance-id: ${spring.application.name}:${instanceId:${random.value}}
 #    preferIpAddress: true
+
+
 #server:
 #  port: 9009
 #  #normalde burası 0 olmalı her instance için otomatik port ataması yapar
 #spring:
+#  kafka:
+#    producer:
+#      bootstrap-servers: localhost:9092
+#      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+#      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+#  cloud:
+#    config:
+#      enabled: false
+#
 #  application:
 #    name: customer-service
 #  datasource:

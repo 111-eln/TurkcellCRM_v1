@@ -1,0 +1,8 @@
+
+®
+java:S1488F"kImmediately return this expression instead of assigning it to the temporary variable "getCustomerResponse".(Ôµ”«8¤÷ÜÁ÷1J$9d04b539-50de-4261-834f-dbbd4db6c549
+¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(•£„Êúÿÿÿÿ8©÷ÜÁ÷1J$677a46cb-9d4f-4a20-a97a-ad3a0aa74f1c
+“
+java:S3655E"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(°Ÿ­Ù8ïùÜÁ÷1J$daa67f4c-958b-428b-9d57-d98261974adb
+O
+java:S1135P"2Complete the task associated to this TODO comment.( £²Š8õŽÞÁ÷1
