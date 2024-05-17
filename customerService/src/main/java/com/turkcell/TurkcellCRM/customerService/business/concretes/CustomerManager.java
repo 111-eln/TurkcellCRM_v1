@@ -2,27 +2,37 @@ package com.turkcell.TurkcellCRM.customerService.business.concretes;
 
 
 import com.turkcell.TurkcellCRM.customerService.business.abstracts.CustomerService;
-import com.turkcell.TurkcellCRM.customerService.business.messages.CustomerMessages;
-import com.turkcell.TurkcellCRM.customerService.business.rules.CustomerBusinessRules;
+//import com.turkcell.TurkcellCRM.customerService.business.messages.CustomerMessages;
+//import com.turkcell.TurkcellCRM.customerService.business.rules.CustomerBusinessRules;
 
-import com.turkcell.TurkcellCRM.customerService.clients.IdentityServiceClient;
-import com.turkcell.TurkcellCRM.customerService.clients.OrderServiceClient;
+import com.turkcell.TurkcellCRM.customerService.business.rules.IndividualCustomerBusinessRules;
+//import com.turkcell.TurkcellCRM.customerService.clients.IdentityServiceClient;
+//import com.turkcell.TurkcellCRM.customerService.clients.OrderServiceClient;
 import com.turkcell.TurkcellCRM.customerService.clients.TokenControlClient;
 import com.turkcell.TurkcellCRM.customerService.core.crossCuttingConcerns.exceptions.types.BusinessException;
 import com.turkcell.TurkcellCRM.customerService.core.crossCuttingConcerns.mapping.ModelMapperService;
 import com.turkcell.TurkcellCRM.customerService.dataAccess.CustomerRepository;
-import com.turkcell.TurkcellCRM.customerService.dtos.request.CreateUserJwtRequest;
-import com.turkcell.TurkcellCRM.customerService.dtos.request.SearchCustomerRequest;
-import com.turkcell.TurkcellCRM.customerService.dtos.request.create.CreateCustomerRequest;
-import com.turkcell.TurkcellCRM.customerService.dtos.request.update.UpdateCustomerRequest;
-import com.turkcell.TurkcellCRM.customerService.dtos.response.SearchCustomerResponse;
-import com.turkcell.TurkcellCRM.customerService.dtos.response.create.CreateCustomerResponse;
+import com.turkcell.TurkcellCRM.customerService.dataAccess.IndividualCustomerRepository;
+//import com.turkcell.TurkcellCRM.customerService.dtos.request.CreateUserJwtRequest;
+//import com.turkcell.TurkcellCRM.customerService.dtos.request.SearchCustomerRequest;
+//import com.turkcell.TurkcellCRM.customerService.dtos.request.create.CreateCustomerRequest;
+import com.turkcell.TurkcellCRM.customerService.dtos.request.create.CreateIndividualCustomerRequest;
+//import com.turkcell.TurkcellCRM.customerService.dtos.request.update.UpdateCustomerRequest;
+import com.turkcell.TurkcellCRM.customerService.dtos.request.update.UpdateIndividualCustomerRequest;
+//import com.turkcell.TurkcellCRM.customerService.dtos.response.SearchCustomerResponse;
+//import com.turkcell.TurkcellCRM.customerService.dtos.response.create.CreateCustomerResponse;
 import com.turkcell.TurkcellCRM.commonPackage.CustomerCreatedEvent;
-import com.turkcell.TurkcellCRM.customerService.dtos.response.get.GetAllCustomerResponse;
-import com.turkcell.TurkcellCRM.customerService.dtos.response.get.GetCustomerResponse;
-import com.turkcell.TurkcellCRM.customerService.dtos.response.update.UpdateCustomerResponse;
-import com.turkcell.TurkcellCRM.customerService.entities.concretes.Customer;
-import com.turkcell.TurkcellCRM.customerService.kafka.producers.CustomerProducer;
+import com.turkcell.TurkcellCRM.customerService.dtos.response.create.CreatedIndividualCustomerResponse;
+//import com.turkcell.TurkcellCRM.customerService.dtos.response.get.GetAllCustomerResponse;
+import com.turkcell.TurkcellCRM.customerService.dtos.response.get.GetAllIndividualCustomerResponse;
+//import com.turkcell.TurkcellCRM.customerService.dtos.response.get.GetCustomerResponse;
+import com.turkcell.TurkcellCRM.customerService.dtos.response.get.GetIndividualCustomerResponse;
+//import com.turkcell.TurkcellCRM.customerService.dtos.response.update.UpdateCustomerResponse;
+import com.turkcell.TurkcellCRM.customerService.dtos.response.update.UpdatedIndividualCustomerResponse;
+//import com.turkcell.TurkcellCRM.customerService.entities.concretes.Customer;
+import com.turkcell.TurkcellCRM.customerService.entities.concretes.IndividualCustomer;
+//import com.turkcell.TurkcellCRM.customerService.kafka.producers.CustomerProducer;
+import com.turkcell.TurkcellCRM.customerService.kafka.producers.IndividualCustomerProducer;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -30,44 +40,46 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 @Service
 @AllArgsConstructor
 public class CustomerManager implements CustomerService {
     //todo bütün crud işlemlerini yap
-    private CustomerRepository customerRepository;
+    private IndividualCustomerRepository customerRepository;
     private ModelMapperService modelMapperService;
-    private CustomerBusinessRules customerBusinnesRules;
-    private CustomerProducer customerProducer;
-    private OrderServiceClient orderServiceClient;
-    private IdentityServiceClient identityServiceClient;
+    private IndividualCustomerBusinessRules customerBusinnesRules;
+    private IndividualCustomerProducer customerProducer;
+//    private OrderServiceClient orderServiceClient;
+//    private IdentityServiceClient identityServiceClient;
     private TokenControlClient tokenControlClient;
 
-    @Override
-    public List<SearchCustomerResponse> search() {
-      //  int result = orderServiceClient.getCustomerIdByOrderId(request.getOrderNumber());
-//        return customerRepository.search(request);
-        return orderServiceClient.getOrders();
-    }
+//    @Override
+//    public List<SearchCustomerResponse> search() {
+//      //  int result = orderServiceClient.getCustomerIdByOrderId(request.getOrderNumber());
+////        return customerRepository.search(request);
+//        return orderServiceClient.getOrders();
+//    }
+//
+//    @Override
+//    public String getJwt(CreateUserJwtRequest userInfo) {
+//        return identityServiceClient.getJwt(userInfo);
+//    }
 
     @Override
-    public String getJwt(CreateUserJwtRequest userInfo) {
-        return identityServiceClient.getJwt(userInfo);
-    }
-
-    @Override
-    public CreateCustomerResponse add(CreateCustomerRequest createCustomerRequest, String request) {
+    public CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createCustomerRequest, String request) {
         if(!tokenControlClient.tokenControl(request.substring("Bearer ".length()))){
             throw new BusinessException("You are not admin");
 
         }
 
         customerBusinnesRules.customerAlreadyExists(createCustomerRequest.getNationalityNumber());
-        Customer customer = modelMapperService.forRequest().map(createCustomerRequest, Customer.class);
+        IndividualCustomer customer = modelMapperService.forRequest().map(createCustomerRequest, IndividualCustomer.class);
         customer.setCreatedDate(LocalDateTime.now());
-        Customer createdCustomer = customerRepository.save(customer);
+        IndividualCustomer createdCustomer = customerRepository.save(customer);
         CustomerCreatedEvent customerCreatedEvent=modelMapperService.forResponse().map(createdCustomer,CustomerCreatedEvent.class);
         customerProducer.sendMessage(customerCreatedEvent);
-        return modelMapperService.forResponse().map(createdCustomer, CreateCustomerResponse.class);
+        return modelMapperService.forResponse().map(createdCustomer, CreatedIndividualCustomerResponse.class);
     }
 
 
@@ -78,30 +90,30 @@ public class CustomerManager implements CustomerService {
     }
 
     @Override
-    public GetCustomerResponse getById(int id) {
+    public GetIndividualCustomerResponse getById(int id) {
         customerBusinnesRules.customerShouldBeExists(id);
-        Customer customer = customerRepository.findById(id).orElse(null);
-        GetCustomerResponse getCustomerResponse = modelMapperService.forResponse().map(customer, GetCustomerResponse.class);
+        IndividualCustomer customer = customerRepository.findById(id).orElse(null);
+        GetIndividualCustomerResponse getCustomerResponse = modelMapperService.forResponse().map(customer, GetIndividualCustomerResponse.class);
         return getCustomerResponse;
     }
 
 
     @Override
-    public UpdateCustomerResponse update(UpdateCustomerRequest updateCustomerRequest, int customerId) {
+    public UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateCustomerRequest, int customerId) {
         customerBusinnesRules.customerShouldBeExists(customerId);
-        Customer customerToUpdate = modelMapperService.forRequest().map(updateCustomerRequest, Customer.class);
+        IndividualCustomer customerToUpdate = modelMapperService.forRequest().map(updateCustomerRequest, IndividualCustomer.class);
         customerToUpdate.setUpdatedDate(LocalDateTime.now());
         customerToUpdate.setId(customerId);
-        Customer updatedCustomer = customerRepository.save(customerToUpdate);
-        return modelMapperService.forResponse().map(updatedCustomer, UpdateCustomerResponse.class);
+        IndividualCustomer updatedCustomer = customerRepository.save(customerToUpdate);
+        return modelMapperService.forResponse().map(updatedCustomer, UpdatedIndividualCustomerResponse.class);
     }
 
     @Override
-    public List<GetAllCustomerResponse> getAll() {
-        List<Customer> customers = customerRepository.findAll();
+    public List<GetAllIndividualCustomerResponse> getAll() {
+        List<IndividualCustomer> customers = customerRepository.findAll();
         return customers.stream().map(customer ->
                 modelMapperService.forResponse()
-                        .map(customer, GetAllCustomerResponse.class)).toList();
+                        .map(customer, GetAllIndividualCustomerResponse.class)).toList();
 
     }
 }

@@ -1,15 +1,21 @@
 package com.turkcell.TurkcellCRM.customerService.api.controllers;
 
 import com.turkcell.TurkcellCRM.customerService.business.abstracts.CustomerService;
-import com.turkcell.TurkcellCRM.customerService.dtos.request.CreateUserJwtRequest;
-import com.turkcell.TurkcellCRM.customerService.dtos.request.SearchCustomerRequest;
-import com.turkcell.TurkcellCRM.customerService.dtos.request.create.CreateCustomerRequest;
-import com.turkcell.TurkcellCRM.customerService.dtos.request.update.UpdateCustomerRequest;
-import com.turkcell.TurkcellCRM.customerService.dtos.response.SearchCustomerResponse;
-import com.turkcell.TurkcellCRM.customerService.dtos.response.create.CreateCustomerResponse;
-import com.turkcell.TurkcellCRM.customerService.dtos.response.get.GetAllCustomerResponse;
-import com.turkcell.TurkcellCRM.customerService.dtos.response.get.GetCustomerResponse;
-import com.turkcell.TurkcellCRM.customerService.dtos.response.update.UpdateCustomerResponse;
+//import com.turkcell.TurkcellCRM.customerService.dtos.request.CreateUserJwtRequest;
+//import com.turkcell.TurkcellCRM.customerService.dtos.request.SearchCustomerRequest;
+//import com.turkcell.TurkcellCRM.customerService.dtos.request.create.CreateCustomerRequest;
+import com.turkcell.TurkcellCRM.customerService.dtos.request.create.CreateIndividualCustomerRequest;
+//import com.turkcell.TurkcellCRM.customerService.dtos.request.update.UpdateCustomerRequest;
+import com.turkcell.TurkcellCRM.customerService.dtos.request.update.UpdateIndividualCustomerRequest;
+//import com.turkcell.TurkcellCRM.customerService.dtos.response.SearchCustomerResponse;
+//import com.turkcell.TurkcellCRM.customerService.dtos.response.create.CreateCustomerResponse;
+import com.turkcell.TurkcellCRM.customerService.dtos.response.create.CreatedIndividualCustomerResponse;
+//import com.turkcell.TurkcellCRM.customerService.dtos.response.get.GetAllCustomerResponse;
+import com.turkcell.TurkcellCRM.customerService.dtos.response.get.GetAllIndividualCustomerResponse;
+//import com.turkcell.TurkcellCRM.customerService.dtos.response.get.GetCustomerResponse;
+import com.turkcell.TurkcellCRM.customerService.dtos.response.get.GetIndividualCustomerResponse;
+//import com.turkcell.TurkcellCRM.customerService.dtos.response.update.UpdateCustomerResponse;
+import com.turkcell.TurkcellCRM.customerService.dtos.response.update.UpdatedIndividualCustomerResponse;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -26,41 +32,41 @@ import java.util.List;
 //@RequestMapping("/customerservice/customers")
 public class CustomerController {
     private CustomerService customerService;
-    @GetMapping("search")
-    public List<SearchCustomerResponse> search()
-    {
-        return customerService.search();
-    }
-
-    @PostMapping("/login")
-    @ResponseStatus(HttpStatus.CREATED)
-    public String login(@RequestBody CreateUserJwtRequest userInfo) {
-        return customerService.getJwt(userInfo);
-    }
+//    @GetMapping("search")
+//    public List<SearchCustomerResponse> search()
+//    {
+//        return customerService.search();
+//    }
+//
+//    @PostMapping("/login")
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public String login(@RequestBody CreateUserJwtRequest userInfo) {
+//        return customerService.getJwt(userInfo);
+//    }
     @CrossOrigin
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CreateCustomerResponse add(@Valid @RequestBody CreateCustomerRequest createCustomerRequest,
-                                      @RequestHeader("Authorization") String request) {
+    public CreatedIndividualCustomerResponse add(@Valid @RequestBody CreateIndividualCustomerRequest createCustomerRequest,
+                                                 @RequestHeader("Authorization") String request) {
 
         return customerService.add(createCustomerRequest,request);
     }
 
     @PutMapping("/{customerId}")
     @ResponseStatus(HttpStatus.OK)
-    public UpdateCustomerResponse update(@Valid @RequestBody UpdateCustomerRequest updateCustomerRequest, @PathVariable int customerId) {
+    public UpdatedIndividualCustomerResponse update(@Valid @RequestBody UpdateIndividualCustomerRequest updateCustomerRequest, @PathVariable int customerId) {
         return customerService.update(updateCustomerRequest,customerId);
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public GetCustomerResponse getById(@PathVariable int id) {
+    public GetIndividualCustomerResponse getById(@PathVariable int id) {
         return customerService.getById(id);
     }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<GetAllCustomerResponse> getAll() {
+    public List<GetAllIndividualCustomerResponse> getAll() {
         return customerService.getAll();
     }
 

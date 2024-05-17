@@ -5,7 +5,7 @@ import lombok.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class UpdatedIndividualCustomerrResponse {
+public class UpdatedIndividualCustomerResponse {
     private String firstName;
     private String lastName;
     private String nationalityNumber;

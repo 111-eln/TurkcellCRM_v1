@@ -1,6 +1,6 @@
 package com.turkcell.TurkcellCRM.customerService.clients;
 
-import com.turkcell.TurkcellCRM.customerService.dtos.request.CreateUserJwtRequest;
+
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -12,7 +12,7 @@ import com.turkcell.TurkcellCRM.customerService.dtos.response.create.CreatedIndi
 import com.turkcell.TurkcellCRM.commonPackage.CustomerCreatedEvent;
 import com.turkcell.TurkcellCRM.customerService.dtos.response.get.GetAllIndividualCustomerResponse;
 import com.turkcell.TurkcellCRM.customerService.dtos.response.get.GetIndividualCustomerResponse;
-import com.turkcell.TurkcellCRM.customerService.dtos.response.update.UpdatedIndividualCustomerrResponse;
+import com.turkcell.TurkcellCRM.customerService.dtos.response.update.UpdatedIndividualCustomerResponse;
 import com.turkcell.TurkcellCRM.customerService.entities.concretes.IndividualCustomer;
 import com.turkcell.TurkcellCRM.customerService.kafka.producers.IndividualCustomerProducer;
 import jakarta.transaction.Transactional;
@@ -74,7 +74,7 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 
     @Transactional
     @Override
-    public UpdatedIndividualCustomerrResponse update(UpdateIndividualCustomerRequest updateCustomerRequest, int customerId) {
+    public UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateCustomerRequest, int customerId) {
 
         individualCustomerBusinessRules.customerShouldBeExists(customerId);
         individualCustomerBusinessRules.checkMernis(modelMapperService.forRequest().map(updateCustomerRequest,CreateIndividualCustomerRequest.class)); //TODO: Buraya bakılacak
@@ -86,7 +86,7 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 
         IndividualCustomer updatedCustomer = individualCustomerRepository.save(customerToUpdate);
 
-        return modelMapperService.forResponse().map(updatedCustomer, UpdatedIndividualCustomerrResponse.class);
+        return modelMapperService.forResponse().map(updatedCustomer, UpdatedIndividualCustomerResponse.class);
     }
 
     @Override

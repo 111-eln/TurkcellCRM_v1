@@ -6,7 +6,7 @@ import com.turkcell.TurkcellCRM.customerService.dtos.request.update.UpdateIndivi
 import com.turkcell.TurkcellCRM.customerService.dtos.response.create.CreatedIndividualCustomerResponse;
 import com.turkcell.TurkcellCRM.customerService.dtos.response.get.GetAllIndividualCustomerResponse;
 import com.turkcell.TurkcellCRM.customerService.dtos.response.get.GetIndividualCustomerResponse;
-import com.turkcell.TurkcellCRM.customerService.dtos.response.update.UpdatedIndividualCustomerrResponse;
+import com.turkcell.TurkcellCRM.customerService.dtos.response.update.UpdatedIndividualCustomerResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -28,7 +28,7 @@ public class IndividualCustomerController {
 
     @PutMapping("/{customerId}")
     @ResponseStatus(HttpStatus.OK)
-    public UpdatedIndividualCustomerrResponse update(@Valid @RequestBody UpdateIndividualCustomerRequest updateCustomerRequest, @PathVariable int customerId) {
+    public UpdatedIndividualCustomerResponse update(@Valid @RequestBody UpdateIndividualCustomerRequest updateCustomerRequest, @PathVariable int customerId) {
         return customerService.update(updateCustomerRequest,customerId);
     }
 

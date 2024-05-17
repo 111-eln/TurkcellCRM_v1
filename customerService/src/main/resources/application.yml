@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+#<<<<<<< HEAD
 eureka:
   client:
     fetchRegistry: true
@@ -11,12 +11,12 @@ eureka:
 server:
   port: 9009
   #normalde burası 0 olmalı her instance için otomatik port ataması yapar
-=======
->>>>>>> eb17ef4439472449f7cac7365fe65111d38cf4ed
+#=======
+#>>>>>>> eb17ef4439472449f7cac7365fe65111d38cf4ed
 spring:
   cloud:
     config:
-<<<<<<< HEAD
+#<<<<<<< HEAD
       enabled: false
   main:
     allow-bean-definition-overriding: true
@@ -43,9 +43,9 @@ spring:
       bootstrap-servers: localhost:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-  springdoc:
-    swagger-ui:
-      disable-swagger-default-url: true
+#  springdoc:
+#    swagger-ui:
+#      disable-swagger-default-url: true
 #
 #spring:
 #  application:
@@ -56,10 +56,10 @@ spring:
 #    config:
 #      profile: dev
 #      kafka: producer: bootstrap-servers: localhost:9092 key-serializer: org.apache.kafka.common.serialization.StringSerializer value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-=======
-      profile: dev
-      #kafka: producer: bootstrap-servers: localhost:9092 key-serializer: org.apache.kafka.common.serialization.StringSerializer value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
->>>>>>> eb17ef4439472449f7cac7365fe65111d38cf4ed
+#=======
+#      profile: dev
+#      #kafka: producer: bootstrap-servers: localhost:9092 key-serializer: org.apache.kafka.common.serialization.StringSerializer value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+#>>>>>>> eb17ef4439472449f7cac7365fe65111d38cf4ed
 
 #eureka:
 #  client:
