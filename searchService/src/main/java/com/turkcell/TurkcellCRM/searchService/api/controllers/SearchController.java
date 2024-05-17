@@ -1,6 +1,7 @@
 package com.turkcell.TurkcellCRM.searchService.api.controllers;
 
-import com.turkcell.TurkcellCRM.searchService.entities.Customer;
+//import com.turkcell.TurkcellCRM.commonPackage.IndividualCustomerCreatedEvent;
+import com.turkcell.TurkcellCRM.searchService.entities.IndividualCustomer;
 import com.turkcell.TurkcellCRM.searchService.business.abstracts.SearchService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,7 @@ public class SearchController {
     private SearchService searchService;
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public List<Customer> getAll() {
+    public List<IndividualCustomer> getAll() {
         return searchService.getAll();
     }
 

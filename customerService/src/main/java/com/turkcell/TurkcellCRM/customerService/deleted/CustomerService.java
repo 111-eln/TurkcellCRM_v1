@@ -1,4 +1,4 @@
-package com.turkcell.TurkcellCRM.customerService.business.abstracts;
+package com.turkcell.TurkcellCRM.customerService.deleted;
 
 //
 //import com.turkcell.TurkcellCRM.customerService.dtos.request.CreateUserJwtRequest;
@@ -25,9 +25,9 @@ public interface CustomerService {
     //todo response ve request yaz
 //    List<SearchCustomerResponse> search();
 //    String getJwt(CreateUserJwtRequest userInfo);
-    CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest customer, String authorizationHeader);// HttpServletRequest request);
-    void delete(int id);
-    GetIndividualCustomerResponse getById(int id);
-    UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateCustomerRequest, int customerId);
-    List<GetAllIndividualCustomerResponse> getAll();
+//    CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest customer);// HttpServletRequest request);
+//    void delete(int id);
+//    GetIndividualCustomerResponse getById(int id);
+//    UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateCustomerRequest, int customerId);
+//    List<GetAllIndividualCustomerResponse> getAll();
 }

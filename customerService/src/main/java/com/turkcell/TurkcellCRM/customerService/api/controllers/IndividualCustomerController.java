@@ -16,14 +16,17 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/customerservice/api/v1/customers")
+@RequestMapping("/individualcustomerservice/api/v1/customers")
 public class IndividualCustomerController {
     private IndividualCustomerService customerService;
 
+    @CrossOrigin
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CreatedIndividualCustomerResponse add(@Valid @RequestBody CreateIndividualCustomerRequest createIndividualCustomerRequest) {
-        return customerService.add(createIndividualCustomerRequest);
+    public CreatedIndividualCustomerResponse add(@Valid @RequestBody CreateIndividualCustomerRequest createCustomerRequest,
+                                                 @RequestHeader("Authorization") String request) {
+
+        return customerService.add(createCustomerRequest,request);
     }
 
     @PutMapping("/{customerId}")

@@ -11,12 +11,10 @@ eureka:
 server:
   port: 9009
   #normalde burası 0 olmalı her instance için otomatik port ataması yapar
-#=======
-#>>>>>>> eb17ef4439472449f7cac7365fe65111d38cf4ed
+
 spring:
   cloud:
     config:
-#<<<<<<< HEAD
       enabled: false
   main:
     allow-bean-definition-overriding: true
@@ -28,7 +26,7 @@ spring:
     password: 12345
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
 
     properties:
       hibernate:

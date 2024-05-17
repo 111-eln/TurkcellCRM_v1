@@ -1,7 +1,7 @@
 package com.turkcell.TurkcellCRM.customerService.adapter;
 
-import com.squareup.okhttp.*;
 import com.turkcell.TurkcellCRM.customerService.dtos.request.create.CreateIndividualCustomerRequest;
+import okhttp3.*;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;

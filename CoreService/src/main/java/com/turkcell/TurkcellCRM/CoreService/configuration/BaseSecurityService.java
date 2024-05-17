@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 public class BaseSecurityService {
     private static final String[] WHITE_LIST_URLS = {
             "/swagger-ui/**",
-            "http://localhost:9009/customerservice/api/v1/customers",
+//            "http://localhost:9009/customerservice/api/v1/customers",
             "http://localhost:8083/api/v1/auth/login"
 
     };

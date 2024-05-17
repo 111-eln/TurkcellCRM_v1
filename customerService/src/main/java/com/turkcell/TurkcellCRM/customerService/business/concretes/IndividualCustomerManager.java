@@ -4,12 +4,14 @@ package com.turkcell.TurkcellCRM.customerService.business.concretes;
 import com.turkcell.TurkcellCRM.customerService.business.abstracts.IndividualCustomerService;
 
 import com.turkcell.TurkcellCRM.customerService.business.rules.IndividualCustomerBusinessRules;
+import com.turkcell.TurkcellCRM.customerService.clients.TokenControlClient;
+import com.turkcell.TurkcellCRM.customerService.core.crossCuttingConcerns.exceptions.types.BusinessException;
 import com.turkcell.TurkcellCRM.customerService.core.crossCuttingConcerns.mapping.ModelMapperService;
 import com.turkcell.TurkcellCRM.customerService.dataAccess.IndividualCustomerRepository;
 import com.turkcell.TurkcellCRM.customerService.dtos.request.create.CreateIndividualCustomerRequest;
 import com.turkcell.TurkcellCRM.customerService.dtos.request.update.UpdateIndividualCustomerRequest;
 import com.turkcell.TurkcellCRM.customerService.dtos.response.create.CreatedIndividualCustomerResponse;
-import com.turkcell.TurkcellCRM.commonPackage.CustomerCreatedEvent;
+import com.turkcell.TurkcellCRM.commonPackage.IndividualCustomerCreatedEvent;
 import com.turkcell.TurkcellCRM.customerService.dtos.response.get.GetAllIndividualCustomerResponse;
 import com.turkcell.TurkcellCRM.customerService.dtos.response.get.GetIndividualCustomerResponse;
 import com.turkcell.TurkcellCRM.customerService.dtos.response.update.UpdatedIndividualCustomerResponse;
@@ -29,11 +31,15 @@ public class IndividualCustomerManager implements IndividualCustomerService {
     private ModelMapperService modelMapperService;
     private IndividualCustomerBusinessRules individualCustomerBusinessRules;
     private IndividualCustomerProducer individualCustomerProducer;
+    private TokenControlClient tokenControlClient;
 
     @Transactional
     @Override
-    public CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest) {
+    public CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest, String request) {
+        if(!tokenControlClient.tokenControl(request.substring("Bearer ".length()))){
+            throw new BusinessException("You are not admin");
 
+        }
         individualCustomerBusinessRules.customerAlreadyExists(createIndividualCustomerRequest.getNationalityNumber());
         individualCustomerBusinessRules.checkMernis(createIndividualCustomerRequest);
 
@@ -42,7 +48,7 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 
         IndividualCustomer createdCustomer = individualCustomerRepository.save(customer);
 
-        CustomerCreatedEvent customerCreatedEvent = modelMapperService.forResponse().map(createdCustomer,CustomerCreatedEvent.class);
+        IndividualCustomerCreatedEvent customerCreatedEvent = modelMapperService.forResponse().map(createdCustomer, IndividualCustomerCreatedEvent.class);
 
         individualCustomerProducer.sendMessage(customerCreatedEvent);
 

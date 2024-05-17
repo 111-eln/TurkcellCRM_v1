@@ -27,9 +27,9 @@ public class OrderManager implements OrderService {
     @Override
     public CreateOrderResponse add(CreateOrderRequest orderRequest) {
         //todo:silincek
-        if (orderRequest.getAddress().getCity().length() < 3 || orderRequest.getAddress().getCity().length() > 14) {
-            throw new IllegalArgumentException("Address length must be between 3 and 14 characters");
-        }
+//        if (orderRequest.getAddress().getCity().length() < 3 || orderRequest.getAddress().getCity().length() > 14) {
+//            throw new IllegalArgumentException("Address length must be between 3 and 14 characters");
+//        }
 
 
 

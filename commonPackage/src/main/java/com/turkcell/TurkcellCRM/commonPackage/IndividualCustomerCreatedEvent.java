@@ -1,15 +1,16 @@
-package com.turkcell.TurkcellCRM.customerService.dtos.response.create;
-import com.turkcell.TurkcellCRM.commonPackage.Gender;
+package com.turkcell.TurkcellCRM.commonPackage;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class IndividualCustomerCreatedEvent {
+
     private String firstName;
     private String secondName;
     private String lastName;
@@ -17,5 +18,8 @@ public class IndividualCustomerCreatedEvent {
     private Gender gender;
     private String fatherName;
     private String motherName;
+
     private String nationalityNumber;
+
+
 }

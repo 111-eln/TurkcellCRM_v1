@@ -11,7 +11,8 @@ import com.turkcell.TurkcellCRM.customerService.dtos.response.update.UpdatedIndi
 import java.util.List;
 
 public interface IndividualCustomerService {
-    CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest customer);
+    CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest customer, String authorizationHeader);// HttpServletRequest request);
+
     void delete(int id);
     GetIndividualCustomerResponse getById(int id);
     UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateCustomerRequest, int customerId);

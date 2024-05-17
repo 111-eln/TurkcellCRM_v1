@@ -1,11 +1,10 @@
 package com.turkcell.TurkcellCRM.searchService.business.abstracts;
 
-import com.turkcell.TurkcellCRM.searchService.entities.Customer;
-import com.turkcell.TurkcellCRM.commonPackage.CustomerCreatedEvent;
+import com.turkcell.TurkcellCRM.searchService.entities.IndividualCustomer;
 
 import java.util.List;
 
 public interface SearchService {
-    void  add(Customer customer);
-    List<Customer> getAll();
+    void  add(IndividualCustomer customer);
+    List<IndividualCustomer> getAll();
 }

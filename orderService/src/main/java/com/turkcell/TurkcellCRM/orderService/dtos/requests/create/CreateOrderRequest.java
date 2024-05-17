@@ -17,8 +17,8 @@ public class CreateOrderRequest {
 //    private int accountId;
     @NotNull
     private int addressId;
-    @jakarta.validation.constraints.NotNull
-    private Address address;
+//    @jakarta.validation.constraints.NotNull
+//    private Address address;
     @NotNull
     private int customerId;
     @NotNull
