@@ -27,11 +27,12 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class IndividualCustomerManager implements IndividualCustomerService {
-    private IndividualCustomerRepository individualCustomerRepository;
+    private final IndividualCustomerRepository individualCustomerRepository;
     private ModelMapperService modelMapperService;
     private IndividualCustomerBusinessRules individualCustomerBusinessRules;
     private IndividualCustomerProducer individualCustomerProducer;
     private TokenControlClient tokenControlClient;
+
 
     @Transactional
     @Override
@@ -53,6 +54,14 @@ public class IndividualCustomerManager implements IndividualCustomerService {
         individualCustomerProducer.sendMessage(customerCreatedEvent);
 
         return modelMapperService.forResponse().map(createdCustomer, CreatedIndividualCustomerResponse.class);
+    }
+
+    @Override
+    public boolean add2(int id) {
+        if(individualCustomerRepository.findById(id).isPresent()){
+            return true;
+        }
+        return false;
     }
 
     @Transactional

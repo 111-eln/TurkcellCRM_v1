@@ -15,15 +15,15 @@ import java.util.List;
 public class CreateOrderRequest {
 //    @NotNull
 //    private int accountId;
-    @NotNull
-    private int addressId;
+//    @NotNull
+//    private int addressId;
 //    @jakarta.validation.constraints.NotNull
 //    private Address address;
     @NotNull
     private int customerId;
     @NotNull
     private int totalAmount;
-    @NotNull
-    private List<Product> products;
+//    @NotNull
+//    private List<Product> products;
 
 }

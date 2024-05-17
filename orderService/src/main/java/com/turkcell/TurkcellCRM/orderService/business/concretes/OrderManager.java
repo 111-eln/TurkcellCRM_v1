@@ -3,6 +3,8 @@ package com.turkcell.TurkcellCRM.orderService.business.concretes;
 import com.turkcell.TurkcellCRM.commonPackage.OrderCreatedEvent;
 import com.turkcell.TurkcellCRM.orderService.business.abstracts.OrderService;
 import com.turkcell.TurkcellCRM.orderService.business.rules.OrderBusinnesRules;
+import com.turkcell.TurkcellCRM.orderService.clients.TakeIndividualCustomerIdClient;
+import com.turkcell.TurkcellCRM.orderService.core.exceptions.types.BusinessException;
 import com.turkcell.TurkcellCRM.orderService.core.mapping.ModelMapperService;
 import com.turkcell.TurkcellCRM.orderService.dataAccess.OrderRepository;
 import com.turkcell.TurkcellCRM.orderService.dtos.requests.create.CreateOrderRequest;
@@ -13,6 +15,7 @@ import com.turkcell.TurkcellCRM.orderService.dtos.responses.update.UpdateOrderRe
 import com.turkcell.TurkcellCRM.orderService.entities.concretes.Order;
 import com.turkcell.TurkcellCRM.orderService.kafka.producers.OrderProducer;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,14 +27,19 @@ public class OrderManager implements OrderService {
     private OrderRepository orderRepository;
     private OrderProducer orderProducer;
     private OrderBusinnesRules orderBusinnesRules;
+    private TakeIndividualCustomerIdClient getCustomerIdClient;
+
+    @Autowired // Setter enjeksiyonu için Autowired kullanılır
+    public void setGetCustomerIdClient(TakeIndividualCustomerIdClient getCustomerIdClient) {
+        this.getCustomerIdClient = getCustomerIdClient;
+    }
     @Override
     public CreateOrderResponse add(CreateOrderRequest orderRequest) {
-        //todo:silincek
-//        if (orderRequest.getAddress().getCity().length() < 3 || orderRequest.getAddress().getCity().length() > 14) {
-//            throw new IllegalArgumentException("Address length must be between 3 and 14 characters");
-//        }
 
 
+        if(!getCustomerIdClient.getCustomerId(orderRequest.getCustomerId())){
+            throw new BusinessException("customer bulunmadi");
+        }
 
 
         Order order=modelMapperService.forRequest().map(orderRequest, Order.class);
