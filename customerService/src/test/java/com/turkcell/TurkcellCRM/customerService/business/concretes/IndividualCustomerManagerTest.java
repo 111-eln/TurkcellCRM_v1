@@ -45,7 +45,6 @@ class IndividualCustomerManagerTest {
         individualCustomerManager = new IndividualCustomerManager(individualCustomerRepository,modelMapperService,rules,producer);
     }
 
-
     @Test
     void deleteById(){
         when(individualCustomerRepository.findById(1)).thenReturn(Optional.of(new IndividualCustomer()));
@@ -56,7 +55,6 @@ class IndividualCustomerManagerTest {
     @Test
     void deleteWithNotExistsId_ShouldThrowException(){
         when(individualCustomerRepository.findById(1)).thenReturn(Optional.empty());
-        //individualCustomerManager.delete(1);
 
         assertThrows(BusinessException.class, () -> {
             individualCustomerManager.delete(1);
@@ -73,7 +71,6 @@ class IndividualCustomerManagerTest {
     @Test
     void getByIdWithNotExistsId_ShouldThrowException(){
         when(individualCustomerRepository.findById(1)).thenReturn(Optional.empty());
-        //individualCustomerManager.getById(1);
 
         assertThrows(BusinessException.class, () -> {
             individualCustomerManager.getById(1);
@@ -91,7 +88,6 @@ class IndividualCustomerManagerTest {
         list.add(customer2);
         when(individualCustomerRepository.findAll()).thenReturn(list);
 
-        // Call the getAll method and capture the result
         List<GetAllIndividualCustomerResponse> result = individualCustomerManager.getAll();
 
         assertEquals(2, result.size());
@@ -100,8 +96,6 @@ class IndividualCustomerManagerTest {
     @Test
     void getAllShouldThrowException(){
         when(individualCustomerRepository.findAll()).thenReturn(new ArrayList<IndividualCustomer>());
-        /*List<GetAllIndividualCustomerResponse> result = individualCustomerManager.getAll();
-        assertEquals(0, result.size());*/
 
         assertThrows(BusinessException.class, () -> {
             individualCustomerManager.getAll();
