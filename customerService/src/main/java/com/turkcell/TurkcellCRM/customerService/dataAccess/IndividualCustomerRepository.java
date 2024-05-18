@@ -8,4 +8,5 @@ import java.util.Optional;
 
 public interface IndividualCustomerRepository extends JpaRepository<IndividualCustomer, Integer> {
     Optional<IndividualCustomer> findByNationalityNumber(String nationalityId);
+
 }

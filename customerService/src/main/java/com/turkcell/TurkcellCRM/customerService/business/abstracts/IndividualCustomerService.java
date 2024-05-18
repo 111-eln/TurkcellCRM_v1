@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface IndividualCustomerService {
     CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest customer, String authorizationHeader);// HttpServletRequest request);
-    boolean add2(int id);
+    boolean add2(Integer id);
     void delete(int id);
     GetIndividualCustomerResponse getById(int id);
     UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateCustomerRequest, int customerId);

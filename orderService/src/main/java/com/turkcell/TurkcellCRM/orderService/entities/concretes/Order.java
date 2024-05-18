@@ -25,8 +25,8 @@ public class Order extends BaseEntity {
 //    private Address address;
 //@ManyToOne
 //@JoinColumn(name = "address_id")
-    @Column(name = "addressId")
-    private int addressId;
+//    @Column(name = "addressId")
+//    private int addressId;
 //    @ManyToOne
 //    @JoinColumn(name = "customer_id")
 //    private Customer customer;
@@ -38,6 +38,6 @@ public class Order extends BaseEntity {
     @Column(name = "totalAmount")
     private int totalAmount;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private List<Product> products;
+//    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+//    private List<Product> products;
 }

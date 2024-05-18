@@ -57,7 +57,7 @@ public class IndividualCustomerManager implements IndividualCustomerService {
     }
 
     @Override
-    public boolean add2(int id) {
+    public boolean add2(Integer id) {
         if(individualCustomerRepository.findById(id).isPresent()){
             return true;
         }

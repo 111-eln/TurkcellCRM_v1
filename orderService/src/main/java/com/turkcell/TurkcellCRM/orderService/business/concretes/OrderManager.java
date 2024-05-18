@@ -14,6 +14,7 @@ import com.turkcell.TurkcellCRM.orderService.dtos.responses.get.GetOrderResponse
 import com.turkcell.TurkcellCRM.orderService.dtos.responses.update.UpdateOrderResponse;
 import com.turkcell.TurkcellCRM.orderService.entities.concretes.Order;
 import com.turkcell.TurkcellCRM.orderService.kafka.producers.OrderProducer;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,9 +31,10 @@ public class OrderManager implements OrderService {
     private TakeIndividualCustomerIdClient getCustomerIdClient;
 
     @Autowired // Setter enjeksiyonu için Autowired kullanılır
-    public void setGetCustomerIdClient(TakeIndividualCustomerIdClient getCustomerIdClient) {
+    public void setTakeIndividualCustomerIdClient(TakeIndividualCustomerIdClient getCustomerIdClient) {
         this.getCustomerIdClient = getCustomerIdClient;
     }
+    @Transactional
     @Override
     public CreateOrderResponse add(CreateOrderRequest orderRequest) {
 
