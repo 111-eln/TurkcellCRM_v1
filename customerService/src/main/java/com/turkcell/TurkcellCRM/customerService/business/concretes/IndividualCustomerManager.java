@@ -52,21 +52,7 @@ public class IndividualCustomerManager implements IndividualCustomerService {
         return modelMapperService.forResponse().map(createdCustomer, CreatedIndividualCustomerResponse.class);
     }
 
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-=======
-    @Override
-    public boolean add2(Integer id) {
-        if(individualCustomerRepository.findById(id).isPresent()){
-            return true;
-        }
-        return false;
-    }
->>>>>>> b5f0f69f24cdb44aaf1d6801236856d9c45b39fc
-
->>>>>>> 48a990d87e30f6949dc9eca1f60f41f8b81b3753
     @Transactional
     @Override
     public void delete(int id,String authorizationHeader) {
@@ -89,17 +75,17 @@ public class IndividualCustomerManager implements IndividualCustomerService {
         return false;
     }
 
-    @Override
-    public GetIndividualCustomerResponse getById(int id, String authorizationHeader) {
-
-        individualCustomerBusinessRules.checkToken(authorizationHeader);
-        individualCustomerBusinessRules.customerShouldBeExists(id);
-
-        IndividualCustomer individualCustomer = individualCustomerRepository.findById(id).get();
-        GetIndividualCustomerResponse getCustomerResponse = modelMapperService.forResponse().map(individualCustomer, GetIndividualCustomerResponse.class);
-
-        return getCustomerResponse;
-    }
+//    @Override
+//    public GetIndividualCustomerResponse getById(int id, String authorizationHeader) {
+//
+//        individualCustomerBusinessRules.checkToken(authorizationHeader);
+//        individualCustomerBusinessRules.customerShouldBeExists(id);
+//
+//        IndividualCustomer individualCustomer = individualCustomerRepository.findById(id).get();
+//        GetIndividualCustomerResponse getCustomerResponse = modelMapperService.forResponse().map(individualCustomer, GetIndividualCustomerResponse.class);
+//
+//        return getCustomerResponse;
+//    }
 
     @Transactional
     @Override

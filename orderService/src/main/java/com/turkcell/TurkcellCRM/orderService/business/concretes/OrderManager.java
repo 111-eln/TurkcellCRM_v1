@@ -31,7 +31,6 @@ public class OrderManager implements OrderService {
     private OrderProducer orderProducer;
     private OrderBusinnesRules orderBusinnesRules;
 
-<<<<<<< HEAD
 
 
     @Transactional
@@ -40,19 +39,7 @@ public class OrderManager implements OrderService {
         if(!this.isCustomerExistClient.getById2(orderRequest.getCustomerId())){
             throw new BusinessException("Customer bulunamadi");
         }
-=======
-<<<<<<< HEAD
-=======
-    @Autowired // Setter enjeksiyonu için Autowired kullanılır
-    public void setTakeIndividualCustomerIdClient(TakeIndividualCustomerIdClient getCustomerIdClient) {
-        this.getCustomerIdClient = getCustomerIdClient;
-    }
->>>>>>> 48a990d87e30f6949dc9eca1f60f41f8b81b3753
-    @Transactional
-    @Override
-    public CreateOrderResponse add(CreateOrderRequest orderRequest) {
 
->>>>>>> b5f0f69f24cdb44aaf1d6801236856d9c45b39fc
         Order order=modelMapperService.forRequest().map(orderRequest, Order.class);
         Order dbOrder=orderRepository.save(order);
         OrderCreatedEvent orderCreatedEvent=modelMapperService.forResponse().map(dbOrder,OrderCreatedEvent.class);

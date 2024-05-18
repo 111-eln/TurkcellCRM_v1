@@ -19,9 +19,7 @@ import java.util.List;
 @RequestMapping("/individualcustomerservice/api/v1/customers")
 public class IndividualCustomerController {
     private IndividualCustomerService customerService;
-//    private final IndividualCustomerRepository individualCustomerRepository;
 
-//    @CrossOrigin
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CreatedIndividualCustomerResponse add(@Valid @RequestBody CreateIndividualCustomerRequest createCustomerRequest,
@@ -29,22 +27,8 @@ public class IndividualCustomerController {
 
         return customerService.add(createCustomerRequest,request);
     }
-<<<<<<< HEAD
 
 
-=======
-<<<<<<< HEAD
-=======
-    //todo: repo olarak kalmamalı
-    @PostMapping("/getCustomer")
-    @ResponseStatus(HttpStatus.CREATED)
-    public boolean add2(@RequestBody Integer id) {
-//        IndividualCustomer individualCustomer=individualCustomerRepository.findById(id).get();
-//        return !individualCustomer.equals(null);
-        return customerService.add2(id);
-    }
->>>>>>> 48a990d87e30f6949dc9eca1f60f41f8b81b3753
->>>>>>> b5f0f69f24cdb44aaf1d6801236856d9c45b39fc
 
     @PutMapping("/{customerId}")
     @ResponseStatus(HttpStatus.OK)
@@ -53,20 +37,16 @@ public class IndividualCustomerController {
     }
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-<<<<<<< HEAD
+
     public boolean getById2(@PathVariable int id) {
         return customerService.getById2(id);
-=======
-    public GetIndividualCustomerResponse getById(@PathVariable int id,@RequestHeader("Authorization") String request) {
-        return customerService.getById(id, request);
->>>>>>> b5f0f69f24cdb44aaf1d6801236856d9c45b39fc
     }
 
-//    @GetMapping("/{id}")
-//    @ResponseStatus(HttpStatus.OK)
-//    public GetIndividualCustomerResponse getById(@PathVariable int id) {
-//        return customerService.getById(id);
+//    public GetIndividualCustomerResponse getById(@PathVariable int id,@RequestHeader("Authorization") String request) {
+//        return customerService.getById2(id, request);
+//
 //    }
+
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
