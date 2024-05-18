@@ -12,9 +12,8 @@ import java.util.List;
 
 public interface IndividualCustomerService {
     CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest customer, String authorizationHeader);// HttpServletRequest request);
-    boolean add2(int id);
-    void delete(int id);
-    GetIndividualCustomerResponse getById(int id);
-    UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateCustomerRequest, int customerId);
-    List<GetAllIndividualCustomerResponse> getAll();
+    void delete(int id, String authorizationHeader);
+    GetIndividualCustomerResponse getById(int id, String authorizationHeader);
+    UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateCustomerRequest, int customerId, String authorizationHeader);
+    List<GetAllIndividualCustomerResponse> getAll(String authorizationHeader);
 }

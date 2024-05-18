@@ -19,8 +19,8 @@ import java.time.LocalDateTime;
 @Table(name = "individualCustomers")
 public class IndividualCustomer extends BaseCustomer {
 
-    @Column(name = "individualId" , insertable = false , updatable = false)
-    private Integer individualId;
+//    @Column(name = "individualId" , insertable = false , updatable = false)
+//    private Integer individualId;
 
     @Column(name = "firstName")
     private String firstName;
@@ -46,6 +46,4 @@ public class IndividualCustomer extends BaseCustomer {
     @Column(name = "nationalityId")
     private String nationalityNumber;
 
-    @Column(name = "isDeleted")
-    private boolean deleted = false;
 }

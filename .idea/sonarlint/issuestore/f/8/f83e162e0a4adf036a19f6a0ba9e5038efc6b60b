@@ -1,8 +1,11 @@
 
-š	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(³ïÉçùÿÿÿÿJ$b49a62c8-aa5d-489b-8b6d-24897775ad03
-_
-java:S6396#"#Remove this unnecessary quantifier.(¥ÔÅÓJ$3eb513c1-b147-4ca8-9d7b-b70bce62ead9
-_
-java:S6396#"#Remove this unnecessary quantifier.(¥ÔÅÓJ$8daae122-8fd2-4784-a614-b7b5565af3da
-x
-java:S6353#"<Use concise character class syntax '\\d' instead of '[0-9]'.(¥ÔÅÓJ$99de918f-aed8-416a-8b87-03d70a485985
+¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(³ïÉçùÿÿÿÿ8‹Å×ßø1J$c147b212-4dd3-44b0-8bd0-3b68bc718429
+›	java:S115'"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(Üù 68ø¡Øßø1J$49bd3dc1-a790-40cb-a6f9-9a7b90a8c141
+f
+java:S6396$"#Remove this unnecessary quantifier.(¥ÔÅÓ8™Å×ßø1J$22f79fb3-0f32-438e-8bc5-37786eba9161
+f
+java:S6396$"#Remove this unnecessary quantifier.(¥ÔÅÓ8šÅ×ßø1J$88683bd8-9512-4da4-b106-603ec988be33
+
+java:S6353$"<Use concise character class syntax '\\d' instead of '[0-9]'.(¥ÔÅÓ8œÅ×ßø1J$ae9b8328-bada-40e9-96f6-002053e6ec76
+N
+java:S1135'"2Complete the task associated to this TODO comment.(Üù 68 âîßø1

@@ -2,6 +2,7 @@ package com.turkcell.TurkcellCRM.customerService.business.rules;
 
 import com.turkcell.TurkcellCRM.customerService.adapter.MernisService;
 import com.turkcell.TurkcellCRM.customerService.business.messages.Messages;
+import com.turkcell.TurkcellCRM.customerService.clients.TokenControlClient;
 import com.turkcell.TurkcellCRM.customerService.core.crossCuttingConcerns.exceptions.types.BusinessException;
 import com.turkcell.TurkcellCRM.customerService.dataAccess.IndividualCustomerRepository;
 import com.turkcell.TurkcellCRM.customerService.dtos.request.create.CreateIndividualCustomerRequest;
@@ -17,6 +18,7 @@ import java.util.Optional;
 public class IndividualCustomerBusinessRules {
     private final IndividualCustomerRepository individualCustomerRepository;
     private final MernisService individualCustomerCheck;
+    private TokenControlClient tokenControlClient;
     public void customerShouldBeExists(int customerId) {
         Optional<IndividualCustomer> foundOptionalCustomer = individualCustomerRepository.findById(customerId);
         if (foundOptionalCustomer.isEmpty()) {
@@ -42,6 +44,12 @@ public class IndividualCustomerBusinessRules {
         boolean deneme = individualCustomerCheck.checkIsRealPerson(createIndividualCustomerRequest);
         if (!deneme){
             throw new BusinessException(Messages.MernisMessages.CUSTOMER_NOT_EXISTS);
+        }
+    }
+
+    public void checkToken(String token){
+        if(!tokenControlClient.tokenControl(token.substring("Bearer ".length()))){
+            throw new BusinessException(Messages.ClientMessages.ADMIN_IS_AUTHENTICATED);
         }
     }
 }

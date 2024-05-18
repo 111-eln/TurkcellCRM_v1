@@ -24,4 +24,7 @@ public class BaseEntity {
     @Column(name = "deletedDate")
     private LocalDateTime deletedDate;
 
+    @Column(name = "isDeleted")
+    private boolean deleted = false;
+
 }
