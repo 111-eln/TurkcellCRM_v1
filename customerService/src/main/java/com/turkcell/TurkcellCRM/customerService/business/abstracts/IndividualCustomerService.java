@@ -12,8 +12,9 @@ import java.util.List;
 
 public interface IndividualCustomerService {
     CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest customer, String authorizationHeader);// HttpServletRequest request);
-    boolean add2(Integer id);
+
     void delete(int id);
+    boolean getById2(int id);
     GetIndividualCustomerResponse getById(int id);
     UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateCustomerRequest, int customerId);
     List<GetAllIndividualCustomerResponse> getAll();

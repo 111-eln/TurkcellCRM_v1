@@ -23,6 +23,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -56,13 +57,7 @@ public class IndividualCustomerManager implements IndividualCustomerService {
         return modelMapperService.forResponse().map(createdCustomer, CreatedIndividualCustomerResponse.class);
     }
 
-    @Override
-    public boolean add2(Integer id) {
-        if(individualCustomerRepository.findById(id).isPresent()){
-            return true;
-        }
-        return false;
-    }
+
 
     @Transactional
     @Override
@@ -74,6 +69,15 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 
         currentCustomer.setDeleted(true);
         currentCustomer.setDeletedDate(LocalDateTime.now());
+    }
+    @Override
+    public boolean getById2(int id) {
+
+        Optional<IndividualCustomer> customer=individualCustomerRepository.findById(id);
+        if(customer.isPresent()){
+            return true;
+        }
+        return false;
     }
 
     @Override

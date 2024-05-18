@@ -3,7 +3,7 @@ package com.turkcell.TurkcellCRM.orderService.business.concretes;
 import com.turkcell.TurkcellCRM.commonPackage.OrderCreatedEvent;
 import com.turkcell.TurkcellCRM.orderService.business.abstracts.OrderService;
 import com.turkcell.TurkcellCRM.orderService.business.rules.OrderBusinnesRules;
-import com.turkcell.TurkcellCRM.orderService.clients.TakeIndividualCustomerIdClient;
+import com.turkcell.TurkcellCRM.orderService.clients.IsCustomerExistClient;
 import com.turkcell.TurkcellCRM.orderService.core.exceptions.types.BusinessException;
 import com.turkcell.TurkcellCRM.orderService.core.mapping.ModelMapperService;
 import com.turkcell.TurkcellCRM.orderService.dataAccess.OrderRepository;
@@ -26,24 +26,18 @@ import java.util.List;
 public class OrderManager implements OrderService {
     private ModelMapperService modelMapperService;
     private OrderRepository orderRepository;
+    private IsCustomerExistClient isCustomerExistClient;
     private OrderProducer orderProducer;
     private OrderBusinnesRules orderBusinnesRules;
-    private TakeIndividualCustomerIdClient getCustomerIdClient;
 
-    @Autowired // Setter enjeksiyonu için Autowired kullanılır
-    public void setTakeIndividualCustomerIdClient(TakeIndividualCustomerIdClient getCustomerIdClient) {
-        this.getCustomerIdClient = getCustomerIdClient;
-    }
+
+
     @Transactional
     @Override
     public CreateOrderResponse add(CreateOrderRequest orderRequest) {
-
-
-        if(!getCustomerIdClient.getCustomerId(orderRequest.getCustomerId())){
-            throw new BusinessException("customer bulunmadi");
+        if(!this.isCustomerExistClient.getById2(orderRequest.getCustomerId())){
+            throw new BusinessException("Customer bulunamadi");
         }
-
-
         Order order=modelMapperService.forRequest().map(orderRequest, Order.class);
         Order dbOrder=orderRepository.save(order);
         OrderCreatedEvent orderCreatedEvent=modelMapperService.forResponse().map(dbOrder,OrderCreatedEvent.class);

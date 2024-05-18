@@ -28,14 +28,7 @@
         <artifactId>commonPackage</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         </dependency>
-<!--<<<<<<< HEAD-->
-<!--&lt;!&ndash;        <dependency>&ndash;&gt;-->
-<!--&lt;!&ndash;            <groupId>com.turkcell.TurkcellCRM</groupId>&ndash;&gt;-->
-<!--&lt;!&ndash;            <artifactId>CoreService</artifactId>&ndash;&gt;-->
-<!--&lt;!&ndash;            <version>0.0.1-SNAPSHOT</version>&ndash;&gt;-->
-<!--&lt;!&ndash;        </dependency>&ndash;&gt;-->
-<!--=======-->
-<!--&gt;>>>>>> eb17ef4439472449f7cac7365fe65111d38cf4ed-->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>

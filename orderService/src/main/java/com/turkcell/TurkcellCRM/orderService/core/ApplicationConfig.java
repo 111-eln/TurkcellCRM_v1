@@ -1,5 +1,6 @@
 package com.turkcell.TurkcellCRM.orderService.core;
 
+import com.turkcell.TurkcellCRM.orderService.clients.IsCustomerExistClient;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,24 +14,27 @@ import java.util.Locale;
 @Configuration
 public class ApplicationConfig {
     @Bean
-    public ResourceBundleMessageSource bundleMessageSource()
-    {
+    public ResourceBundleMessageSource bundleMessageSource() {
         ResourceBundleMessageSource source = new ResourceBundleMessageSource();
         source.setBasename("messages");
         return source;
     }
+
     @Bean
-    public LocaleResolver localeResolver()
-    {
+    public LocaleResolver localeResolver() {
         AcceptHeaderLocaleResolver acceptHeaderLocaleResolver = new AcceptHeaderLocaleResolver();
         acceptHeaderLocaleResolver.setDefaultLocale(new Locale("tr"));
         return acceptHeaderLocaleResolver;
     }
+
     @Bean
-    public ModelMapper getModelMapper(){
+    public ModelMapper getModelMapper() {
         return new ModelMapper();
     }
 
 
-
 }
+
+
+
+

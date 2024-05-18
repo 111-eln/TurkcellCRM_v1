@@ -32,26 +32,25 @@ public class IndividualCustomerController {
 
         return customerService.add(createCustomerRequest,request);
     }
-    //todo: repo olarak kalmamalı
-    @PostMapping("/getCustomer")
-    @ResponseStatus(HttpStatus.CREATED)
-    public boolean add2(@RequestBody Integer id) {
-//        IndividualCustomer individualCustomer=individualCustomerRepository.findById(id).get();
-//        return !individualCustomer.equals(null);
-        return customerService.add2(id);
-    }
+
+
 
     @PutMapping("/{customerId}")
     @ResponseStatus(HttpStatus.OK)
     public UpdatedIndividualCustomerResponse update(@Valid @RequestBody UpdateIndividualCustomerRequest updateCustomerRequest, @PathVariable int customerId) {
         return customerService.update(updateCustomerRequest,customerId);
     }
-
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public GetIndividualCustomerResponse getById(@PathVariable int id) {
-        return customerService.getById(id);
+    public boolean getById2(@PathVariable int id) {
+        return customerService.getById2(id);
     }
+
+//    @GetMapping("/{id}")
+//    @ResponseStatus(HttpStatus.OK)
+//    public GetIndividualCustomerResponse getById(@PathVariable int id) {
+//        return customerService.getById(id);
+//    }
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)

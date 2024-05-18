@@ -1,5 +1,6 @@
 package com.turkcell.TurkcellCRM.orderService.business.abstracts;
 
+import com.turkcell.TurkcellCRM.orderService.clients.IsCustomerExistClient;
 import com.turkcell.TurkcellCRM.orderService.dtos.requests.create.CreateOrderRequest;
 import com.turkcell.TurkcellCRM.orderService.dtos.requests.create.CreateProductRequest;
 import com.turkcell.TurkcellCRM.orderService.dtos.requests.update.UpdateOrderRequest;

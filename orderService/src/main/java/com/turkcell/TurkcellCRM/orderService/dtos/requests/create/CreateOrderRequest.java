@@ -20,7 +20,7 @@ public class CreateOrderRequest {
 //    @jakarta.validation.constraints.NotNull
 //    private Address address;
     @NotNull
-    private Integer customerId;
+    private int customerId;
     @NotNull
     private int totalAmount;
 //    @NotNull
