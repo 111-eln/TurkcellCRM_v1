@@ -31,6 +31,13 @@ public class OrderManager implements OrderService {
     private OrderBusinnesRules orderBusinnesRules;
     private TakeIndividualCustomerIdClient getCustomerIdClient;
 
+<<<<<<< HEAD
+=======
+    @Autowired // Setter enjeksiyonu için Autowired kullanılır
+    public void setTakeIndividualCustomerIdClient(TakeIndividualCustomerIdClient getCustomerIdClient) {
+        this.getCustomerIdClient = getCustomerIdClient;
+    }
+>>>>>>> 48a990d87e30f6949dc9eca1f60f41f8b81b3753
     @Transactional
     @Override
     public CreateOrderResponse add(CreateOrderRequest orderRequest) {

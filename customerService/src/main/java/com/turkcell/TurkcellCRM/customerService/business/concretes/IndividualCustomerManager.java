@@ -51,6 +51,17 @@ public class IndividualCustomerManager implements IndividualCustomerService {
         return modelMapperService.forResponse().map(createdCustomer, CreatedIndividualCustomerResponse.class);
     }
 
+<<<<<<< HEAD
+=======
+    @Override
+    public boolean add2(Integer id) {
+        if(individualCustomerRepository.findById(id).isPresent()){
+            return true;
+        }
+        return false;
+    }
+
+>>>>>>> 48a990d87e30f6949dc9eca1f60f41f8b81b3753
     @Transactional
     @Override
     public void delete(int id,String authorizationHeader) {

@@ -29,6 +29,17 @@ public class IndividualCustomerController {
 
         return customerService.add(createCustomerRequest,request);
     }
+<<<<<<< HEAD
+=======
+    //todo: repo olarak kalmamalı
+    @PostMapping("/getCustomer")
+    @ResponseStatus(HttpStatus.CREATED)
+    public boolean add2(@RequestBody Integer id) {
+//        IndividualCustomer individualCustomer=individualCustomerRepository.findById(id).get();
+//        return !individualCustomer.equals(null);
+        return customerService.add2(id);
+    }
+>>>>>>> 48a990d87e30f6949dc9eca1f60f41f8b81b3753
 
     @PutMapping("/{customerId}")
     @ResponseStatus(HttpStatus.OK)
