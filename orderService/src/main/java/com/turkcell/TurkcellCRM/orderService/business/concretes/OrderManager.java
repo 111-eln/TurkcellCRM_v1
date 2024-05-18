@@ -19,6 +19,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -30,6 +31,7 @@ public class OrderManager implements OrderService {
     private OrderProducer orderProducer;
     private OrderBusinnesRules orderBusinnesRules;
 
+<<<<<<< HEAD
 
 
     @Transactional
@@ -38,6 +40,19 @@ public class OrderManager implements OrderService {
         if(!this.isCustomerExistClient.getById2(orderRequest.getCustomerId())){
             throw new BusinessException("Customer bulunamadi");
         }
+=======
+<<<<<<< HEAD
+=======
+    @Autowired // Setter enjeksiyonu için Autowired kullanılır
+    public void setTakeIndividualCustomerIdClient(TakeIndividualCustomerIdClient getCustomerIdClient) {
+        this.getCustomerIdClient = getCustomerIdClient;
+    }
+>>>>>>> 48a990d87e30f6949dc9eca1f60f41f8b81b3753
+    @Transactional
+    @Override
+    public CreateOrderResponse add(CreateOrderRequest orderRequest) {
+
+>>>>>>> b5f0f69f24cdb44aaf1d6801236856d9c45b39fc
         Order order=modelMapperService.forRequest().map(orderRequest, Order.class);
         Order dbOrder=orderRepository.save(order);
         OrderCreatedEvent orderCreatedEvent=modelMapperService.forResponse().map(dbOrder,OrderCreatedEvent.class);
@@ -45,34 +60,46 @@ public class OrderManager implements OrderService {
         return modelMapperService.forResponse().map(dbOrder, CreateOrderResponse.class);
     }
 
+    @Transactional
     @Override
     public void delete(int id) {
-        orderRepository.deleteById(id);
+
+        orderBusinnesRules.orderShouldBeExists(id);
+
+        Order currentOrder = this.orderRepository.findById(id).get();
+        currentOrder.setDeleted(true);
+        currentOrder.setDeletedDate(LocalDateTime.now());
     }
 
     @Override
     public GetOrderResponse getById(int id) {
-        Order order=orderRepository.findById(id).orElse(null);
 
+        orderBusinnesRules.orderShouldBeExists(id);
+
+        Order order = orderRepository.findById(id).get();
         return modelMapperService.forResponse().map(order, GetOrderResponse.class) ;
     }
 
+    @Transactional
     @Override
     public UpdateOrderResponse update(UpdateOrderRequest updateOrderRequest, int orderId) {
+
        orderBusinnesRules.orderShouldBeExists(orderId);
 
-        Order order=orderRepository.findById(orderId).orElse(null);
+        Order order = orderRepository.findById(orderId).get();
         order.setId(orderId);
+        order.setUpdatedDate(LocalDateTime.now());
         Order dbOrder=orderRepository.save(order);
         return modelMapperService.forResponse().map(dbOrder,UpdateOrderResponse.class);
     }
 
     @Override
     public List<GetOrderResponse> getAll() {
+
+        orderBusinnesRules.ordersShouldBeExist();
+
         List<Order> orders=orderRepository.findAll();
 
         return  orders.stream().map(order->  modelMapperService.forResponse().map(order, GetOrderResponse.class)).toList();
-
-
     }
 }

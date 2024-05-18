@@ -12,15 +12,15 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "customers")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class BaseCustomer extends BaseEntity {
+
+    @Column(name = "type")
+    private String type;
 
     @OneToOne(mappedBy = "customer")
     private ContactInfo contactInfo;
 
     @OneToMany(mappedBy = "customer")
     private List<Address> addresses;
-
-    @OneToOne
-    @JoinColumn(name = "individualId", referencedColumnName = "id")
-    private IndividualCustomer individualCustomer;
 }

@@ -22,4 +22,8 @@ public class Messages {
     public static class MernisMessages{
         public static final String CUSTOMER_NOT_EXISTS = "individualCustomersNotFoundForMernis";
     }
+
+    public static class ClientMessages{
+        public static final String ADMIN_IS_AUTHENTICATED ="adminIsNotAuthenticated";
+    }
 }

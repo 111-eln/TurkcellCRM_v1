@@ -48,7 +48,7 @@ class IndividualCustomerManagerTest {
     @Test
     void deleteById(){
         when(individualCustomerRepository.findById(1)).thenReturn(Optional.of(new IndividualCustomer()));
-        individualCustomerManager.delete(1);
+        individualCustomerManager.delete(1, );
         assert true;
     }
 
@@ -57,14 +57,14 @@ class IndividualCustomerManagerTest {
         when(individualCustomerRepository.findById(1)).thenReturn(Optional.empty());
 
         assertThrows(BusinessException.class, () -> {
-            individualCustomerManager.delete(1);
+            individualCustomerManager.delete(1, );
         });
     }
 
     @Test
     void getById(){
         when(individualCustomerRepository.findById(1)).thenReturn(Optional.of(new IndividualCustomer()));
-        individualCustomerManager.getById(1);
+        individualCustomerManager.getById(1, );
         assert true;
     }
 
@@ -73,7 +73,7 @@ class IndividualCustomerManagerTest {
         when(individualCustomerRepository.findById(1)).thenReturn(Optional.empty());
 
         assertThrows(BusinessException.class, () -> {
-            individualCustomerManager.getById(1);
+            individualCustomerManager.getById(1, );
         });
 
     }

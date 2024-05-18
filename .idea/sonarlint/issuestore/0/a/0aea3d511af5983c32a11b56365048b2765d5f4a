@@ -1,10 +1,6 @@
 
 ®
-java:S1488F"kImmediately return this expression instead of assigning it to the temporary variable "getCustomerResponse".(Ôµ”«8¤÷ÜÁ÷1J$5a0ebbc2-61a6-40de-91cb-cb84226914fd
-¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(•£„Êúÿÿÿÿ8©÷ÜÁ÷1J$8afcc602-b996-40c5-b175-ad1c1285444f
-“
-java:S3655:"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(®°­ 8Ì¿ø1J$b27d3ee2-bace-41e1-b0a5-c47f86914b79
-“
-java:S3655E"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(°Ÿ­Ù8Ì¿ø1J$01e674a7-f633-4a7d-a96e-edfa065b5a7d
+java:S1488J"kImmediately return this expression instead of assigning it to the temporary variable "getCustomerResponse".(Ôµ”«8 ¡êŞø1J$3744077a-0413-4632-aee3-88c172f1b7ec
+¡	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(•£„Êúÿÿÿÿ8£¡êŞø1J$928b1132-9eee-4e2c-ae65-b370701b4805
 u
-java:S1135P"2Complete the task associated to this TODO comment.( £²Š8õŞÁ÷1J$9dd6c576-510e-4da1-b3be-8084c73a65b7
+java:S1135U"2Complete the task associated to this TODO comment.( £²Š8Ç¡êŞø1J$bd5bd346-0ca7-4819-bc32-65129ae0287a

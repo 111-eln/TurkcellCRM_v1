@@ -4,8 +4,6 @@ package com.turkcell.TurkcellCRM.customerService.business.concretes;
 import com.turkcell.TurkcellCRM.customerService.business.abstracts.IndividualCustomerService;
 
 import com.turkcell.TurkcellCRM.customerService.business.rules.IndividualCustomerBusinessRules;
-import com.turkcell.TurkcellCRM.customerService.clients.TokenControlClient;
-import com.turkcell.TurkcellCRM.customerService.core.crossCuttingConcerns.exceptions.types.BusinessException;
 import com.turkcell.TurkcellCRM.customerService.core.crossCuttingConcerns.mapping.ModelMapperService;
 import com.turkcell.TurkcellCRM.customerService.dataAccess.IndividualCustomerRepository;
 import com.turkcell.TurkcellCRM.customerService.dtos.request.create.CreateIndividualCustomerRequest;
@@ -32,16 +30,13 @@ public class IndividualCustomerManager implements IndividualCustomerService {
     private ModelMapperService modelMapperService;
     private IndividualCustomerBusinessRules individualCustomerBusinessRules;
     private IndividualCustomerProducer individualCustomerProducer;
-    private TokenControlClient tokenControlClient;
 
 
     @Transactional
     @Override
-    public CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest, String request) {
-        if(!tokenControlClient.tokenControl(request.substring("Bearer ".length()))){
-            throw new BusinessException("You are not admin");
+    public CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest createIndividualCustomerRequest, String authorizationHeader) {
 
-        }
+        individualCustomerBusinessRules.checkToken(authorizationHeader);
         individualCustomerBusinessRules.customerAlreadyExists(createIndividualCustomerRequest.getNationalityNumber());
         individualCustomerBusinessRules.checkMernis(createIndividualCustomerRequest);
 
@@ -57,12 +52,26 @@ public class IndividualCustomerManager implements IndividualCustomerService {
         return modelMapperService.forResponse().map(createdCustomer, CreatedIndividualCustomerResponse.class);
     }
 
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+=======
+    @Override
+    public boolean add2(Integer id) {
+        if(individualCustomerRepository.findById(id).isPresent()){
+            return true;
+        }
+        return false;
+    }
+>>>>>>> b5f0f69f24cdb44aaf1d6801236856d9c45b39fc
 
+>>>>>>> 48a990d87e30f6949dc9eca1f60f41f8b81b3753
     @Transactional
     @Override
-    public void delete(int id) {
+    public void delete(int id,String authorizationHeader) {
 
+        individualCustomerBusinessRules.checkToken(authorizationHeader);
         individualCustomerBusinessRules.customerShouldBeExists(id);
 
         IndividualCustomer currentCustomer = this.individualCustomerRepository.findById(id).get();
@@ -81,8 +90,9 @@ public class IndividualCustomerManager implements IndividualCustomerService {
     }
 
     @Override
-    public GetIndividualCustomerResponse getById(int id) {
+    public GetIndividualCustomerResponse getById(int id, String authorizationHeader) {
 
+        individualCustomerBusinessRules.checkToken(authorizationHeader);
         individualCustomerBusinessRules.customerShouldBeExists(id);
 
         IndividualCustomer individualCustomer = individualCustomerRepository.findById(id).get();
@@ -93,8 +103,9 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 
     @Transactional
     @Override
-    public UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateCustomerRequest, int customerId) {
+    public UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateCustomerRequest, int customerId,String authorizationHeader) {
 
+        individualCustomerBusinessRules.checkToken(authorizationHeader);
         individualCustomerBusinessRules.customerShouldBeExists(customerId);
         individualCustomerBusinessRules.checkMernis(modelMapperService.forRequest().map(updateCustomerRequest,CreateIndividualCustomerRequest.class)); //TODO: Buraya bakılacak
 
@@ -109,9 +120,10 @@ public class IndividualCustomerManager implements IndividualCustomerService {
     }
 
     @Override
-    public List<GetAllIndividualCustomerResponse> getAll() {
+    public List<GetAllIndividualCustomerResponse> getAll(String authorizationHeader) {
 
-        this.individualCustomerBusinessRules.customersShouldBeExist();
+        individualCustomerBusinessRules.checkToken(authorizationHeader);
+        individualCustomerBusinessRules.customersShouldBeExist();
 
         List<IndividualCustomer> customers = individualCustomerRepository.findAll();
 
