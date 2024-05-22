@@ -22,6 +22,16 @@ public class ProductController {
 
         return productService.add(createProductsRequest);
     }
+    @PutMapping("/productStockControl")
+    @ResponseStatus(HttpStatus.OK)
+    public boolean controlProductStock(@RequestBody String productTitle) {
+        return productService.controlProductStock(productTitle);
+    }
+    @PutMapping("/productTitleControl")
+    @ResponseStatus(HttpStatus.OK)
+    public boolean controlProductTitle(@RequestBody String productTitle) {
+        return productService.controlProductTitle(productTitle);
+    }
 
 
 

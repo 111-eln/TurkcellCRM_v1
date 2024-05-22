@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="identityService" />
         <module name="inventoryService" />
+        <module name="basketService" />
         <module name="gatewayService" />
         <module name="accountService" />
         <module name="CoreService" />
@@ -28,6 +29,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="CoreService" options="-parameters" />
       <module name="accountService" options="-parameters" />
+      <module name="basketService" options="-parameters" />
       <module name="catalogService" options="-parameters" />
       <module name="commonPackage" options="-parameters" />
       <module name="configserver" options="-parameters" />

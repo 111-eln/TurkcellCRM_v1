@@ -40,6 +40,22 @@ public class ProductManager implements ProductService {
     }
 
     @Override
+    public boolean controlProductStock(String productTitle) {
+        Product product=productRepository.findByTitle(productTitle);
+        if(product.getUnitOfStock()>0){
+            product.setUnitOfStock(product.getUnitOfStock()-1);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean controlProductTitle(String productTitle) {
+        Product product=productRepository.findByTitle(productTitle);
+        return product != null;
+    }
+
+    @Override
     public List<CreatedProductResponse> getAll() {
         List<Product> products=productRepository.findAll();
         return products.stream().map(product ->

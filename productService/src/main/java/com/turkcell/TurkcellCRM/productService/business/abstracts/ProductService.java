@@ -11,6 +11,8 @@ public interface ProductService {
     void delete(int id);
     //    GetIndividualCustomerResponse getById(int id, String authorizationHeader);
     CreatedProductResponse update(CreateProductsRequest productRequest,int id);
+    boolean controlProductStock(String productTitle);
+    boolean controlProductTitle(String productTitle);
     List<CreatedProductResponse> getAll();
 
     CreatedProductResponse getById(int id);
