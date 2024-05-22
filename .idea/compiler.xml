@@ -7,18 +7,20 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="invoiceService" />
         <module name="identityService" />
         <module name="inventoryService" />
-        <module name="customerService" />
         <module name="gatewayService" />
-        <module name="searchService" />
         <module name="accountService" />
-        <module name="orderService" />
-        <module name="commonPackage" />
         <module name="CoreService" />
         <module name="configserver" />
         <module name="discoveryServer" />
+        <module name="productService" />
+        <module name="invoiceService" />
+        <module name="catalogService" />
+        <module name="customerService" />
+        <module name="searchService" />
+        <module name="orderService" />
+        <module name="commonPackage" />
       </profile>
     </annotationProcessing>
   </component>
@@ -26,6 +28,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="CoreService" options="-parameters" />
       <module name="accountService" options="-parameters" />
+      <module name="catalogService" options="-parameters" />
       <module name="commonPackage" options="-parameters" />
       <module name="configserver" options="-parameters" />
       <module name="customerService" options="-parameters" />
@@ -35,6 +38,7 @@
       <module name="inventoryService" options="-parameters" />
       <module name="invoiceService" options="-parameters" />
       <module name="orderService" options="-parameters" />
+      <module name="productService" options="-parameters" />
       <module name="searchService" options="-parameters" />
     </option>
   </component>

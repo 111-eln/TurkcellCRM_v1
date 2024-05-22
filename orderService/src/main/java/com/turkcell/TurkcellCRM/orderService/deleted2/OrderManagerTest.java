@@ -1,18 +1,5 @@
 package com.turkcell.TurkcellCRM.orderService.deleted2;
 
-import com.turkcell.TurkcellCRM.orderService.business.concretes.OrderManager;
-import com.turkcell.TurkcellCRM.orderService.business.rules.OrderBusinnesRules;
-import com.turkcell.TurkcellCRM.orderService.core.exceptions.types.BusinessException;
-import com.turkcell.TurkcellCRM.orderService.core.mapping.ModelMapperManager;
-import com.turkcell.TurkcellCRM.orderService.core.mapping.ModelMapperService;
-import com.turkcell.TurkcellCRM.orderService.dataAccess.OrderRepository;
-import com.turkcell.TurkcellCRM.orderService.dtos.requests.create.CreateOrderRequest;
-import com.turkcell.TurkcellCRM.orderService.dtos.requests.update.UpdateOrderRequest;
-import com.turkcell.TurkcellCRM.orderService.entities.concretes.Address;
-import com.turkcell.TurkcellCRM.orderService.entities.concretes.Customer;
-import com.turkcell.TurkcellCRM.orderService.entities.concretes.Order;
-import com.turkcell.TurkcellCRM.orderService.entities.concretes.Product;
-import com.turkcell.TurkcellCRM.orderService.kafka.producers.OrderProducer;
 //import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.Test;
 //import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,11 +7,7 @@ import com.turkcell.TurkcellCRM.orderService.kafka.producers.OrderProducer;
 //import org.mockito.Mock;
 //import org.mockito.Mockito;
 //import org.mockito.junit.jupiter.MockitoExtension;
-import org.modelmapper.ModelMapper;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 //
 //import static org.junit.jupiter.api.Assertions.assertThrows;
 //

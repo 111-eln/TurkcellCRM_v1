@@ -1,8 +1,9 @@
 package com.turkcell.TurkcellCRM.invoiceService.entities;
 
 
-import com.turkcell.TurkcellCRM.commonPackage.Product;
+
 import com.turkcell.TurkcellCRM.commonPackage.Address;
+import com.turkcell.TurkcellCRM.commonPackage.Product;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,17 +22,19 @@ public class Order {
 
     @Id
     private String id;
- @Field(name="city")
+    @Field(name="city")
     private String city;
- @Field(name="street")
+    @Field(name="street")
     private String street;
- @Field(name="houseNumber")
+    @Field(name="houseNumber")
     private String houseNumber;
- @Field(name="addressDescription")
+    @Field(name="addressDescription")
     private String addressDescription;
     @Field(name="products")
     private List<Product> products;
     @Field(name="totalAmount")
     private int totalAmount;
+//    @Field(name="customerId")
+//    private int customerId;
 
 }

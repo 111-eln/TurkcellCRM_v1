@@ -20,7 +20,6 @@ public class CreateProductRequest {
     @NotNull
     private int price;
 
-    @NotNull
-    private int unitOfStock;
+
 
 }

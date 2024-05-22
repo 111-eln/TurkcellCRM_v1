@@ -20,24 +20,14 @@ public class Order extends BaseEntity {
 //    @JoinColumn(name = "account_id", referencedColumnName = "id")
 //    private Account account;
 
-//    @ManyToOne
-//    @JoinColumn(name = "address_id")
-//    private Address address;
-//@ManyToOne
-//@JoinColumn(name = "address_id")
-//    @Column(name = "addressId")
-//    private int addressId;
-//    @ManyToOne
-//    @JoinColumn(name = "customer_id")
-//    private Customer customer;
-//    @ManyToOne
-//    @JoinColumn(name = "customer_id")
+    @Column(name="addressId")
+    private int addressId;
+
     @Column(name="customerId")
     private int customerId;
 
     @Column(name = "totalAmount")
     private int totalAmount;
 
-//    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-//    private List<Product> products;
+
 }

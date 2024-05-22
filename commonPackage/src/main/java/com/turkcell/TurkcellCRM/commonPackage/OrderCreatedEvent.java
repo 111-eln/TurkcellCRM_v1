@@ -12,7 +12,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderCreatedEvent {
-//    private Address address;
     private String city;
 
     private String street;
@@ -24,5 +23,7 @@ public class OrderCreatedEvent {
     private List<Product> products;
 
     private int totalAmount;
+    private int customerId;
+
 
 }

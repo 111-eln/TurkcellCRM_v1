@@ -10,10 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "products")
+@Table(name = "productOfTheOrder")
 public class Product extends BaseEntity {
-
-
     @Column(name = "title")
     private String title;
 
@@ -23,10 +21,6 @@ public class Product extends BaseEntity {
     @Column(name = "price")
     private int price;
 
-    @Column(name = "unitOfStock")
-    private int unitOfStock;
-    @ManyToOne
-    @JoinColumn(name = "order_id")
-    private Order order;
-
+    @Column(name = "orderId")
+    private int orderId;
 }

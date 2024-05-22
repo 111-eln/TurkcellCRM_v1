@@ -23,6 +23,7 @@ public class OrderConsumer {
         order.setStreet(orderCreatedEvent.getStreet());
         order.setTotalAmount(orderCreatedEvent.getTotalAmount());
         order.setAddressDescription(orderCreatedEvent.getAddressDescription());
+//        order.setCustomerId(orderCreatedEvent.getCustomerId());
 
         LOGGER.info(String.format("Order consumed =>%s",order.toString()));
         this.invoiceService.add(order);
