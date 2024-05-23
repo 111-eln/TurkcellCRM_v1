@@ -14,27 +14,29 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Document("filter-customer")
 public class IndividualCustomer {
+
     @Id
     private String id;
+
     @Field(name="firstName")
     private String firstName;
 
-  @Field(name="secondName")
+    @Field(name="secondName")
     private String secondName;
 
     @Field(name="lastName")
     private String lastName;
 
-   @Field(name="birthDate")
+    @Field(name="birthDate")
     private LocalDateTime birthDate;
 
     @Field(name="gender")
     private String gender;
 
-   @Field(name="fatherName")
+    @Field(name="fatherName")
     private String fatherName;
 
-   @Field(name="motherName")
+    @Field(name="motherName")
     private String motherName;
 
     @Field(name="nationalityNumber")

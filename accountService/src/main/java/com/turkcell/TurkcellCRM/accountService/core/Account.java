@@ -15,12 +15,12 @@ import lombok.NoArgsConstructor;
 @Table(name = "accounts")
 public class Account extends BaseEntity {
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "order_id", referencedColumnName = "id")
-    private Order order;
-    @ManyToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
+
+    @Column(name = "order_id")
+    private int orderId;
+
+    @Column(name = "customer_id")
+    private int customerId;
 
     @Column(name = "accountStatus")
     private String accountStatus;
@@ -31,9 +31,8 @@ public class Account extends BaseEntity {
     @Column(name = "accountName")
     private String accountName;
 
-    @ManyToOne
-    @JoinColumn(name = "adress_id")
-    private Address adresses;
+    @Column(name = "adress_id")
+    private int adressesId;
 
 
 }

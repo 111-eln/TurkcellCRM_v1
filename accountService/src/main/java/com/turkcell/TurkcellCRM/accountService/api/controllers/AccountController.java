@@ -1,6 +1,6 @@
 package com.turkcell.TurkcellCRM.accountService.api.controllers;
 
-import com.turkcell.TurkcellCRM.accountService.business.AccountService;
+import com.turkcell.TurkcellCRM.accountService.business.abstracts.AccountService;
 import com.turkcell.TurkcellCRM.accountService.core.Account;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;

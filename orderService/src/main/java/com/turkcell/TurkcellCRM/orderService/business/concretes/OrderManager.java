@@ -1,6 +1,7 @@
 package com.turkcell.TurkcellCRM.orderService.business.concretes;
 
 import com.turkcell.TurkcellCRM.commonPackage.OrderCreatedEvent;
+import com.turkcell.TurkcellCRM.commonPackage.OrderCreatedForAccountEvent;
 import com.turkcell.TurkcellCRM.orderService.business.abstracts.OrderService;
 import com.turkcell.TurkcellCRM.orderService.business.rules.OrderBusinnesRules;
 import com.turkcell.TurkcellCRM.orderService.clients.IsCustomerExistClient;
@@ -18,6 +19,7 @@ import com.turkcell.TurkcellCRM.orderService.dtos.responses.get.GetOrderResponse
 import com.turkcell.TurkcellCRM.orderService.dtos.responses.update.UpdateOrderResponse;
 import com.turkcell.TurkcellCRM.orderService.entities.concretes.Order;
 import com.turkcell.TurkcellCRM.orderService.entities.concretes.Product;
+import com.turkcell.TurkcellCRM.orderService.kafka.producers.OrderForAccountProducer;
 import com.turkcell.TurkcellCRM.orderService.kafka.producers.OrderProducer;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -35,6 +37,7 @@ public class OrderManager implements OrderService {
     private ProductRepository productRepository;
     private IsCustomerExistClient isCustomerExistClient;
     private OrderProducer orderProducer;
+    private OrderForAccountProducer orderForAccountProducer;
     private OrderBusinnesRules orderBusinnesRules;
     private ProductStockIsEnoughClient productStockIsEnoughClient;
     private ProductTitleIsExistClient productTitleIsExistClient;
@@ -68,6 +71,8 @@ public class OrderManager implements OrderService {
         //----------------
         OrderCreatedEvent orderCreatedEvent=modelMapperService.forResponse().map(dbOrder,OrderCreatedEvent.class);
         orderProducer.sendMessage(orderCreatedEvent);
+        OrderCreatedForAccountEvent orderCreatedForAccountEvent=modelMapperService.forResponse().map(dbOrder,OrderCreatedForAccountEvent.class);
+        orderForAccountProducer.sendMessage(orderCreatedForAccountEvent);
         return modelMapperService.forResponse().map(dbOrder, CreateOrderResponse.class);
     }
 

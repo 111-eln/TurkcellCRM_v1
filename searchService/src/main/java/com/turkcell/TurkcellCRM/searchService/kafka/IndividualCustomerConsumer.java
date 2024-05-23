@@ -18,6 +18,7 @@ public class IndividualCustomerConsumer {
 
     @KafkaListener(topics = "inventory-customer-created",groupId="customer-create")
     public void consume(IndividualCustomerCreatedEvent customerCreatedEvent){
+
         IndividualCustomer customer = new IndividualCustomer();
         customer.setBirthDate(customerCreatedEvent.getBirthDate());
         customer.setGender(customerCreatedEvent.getGender().toString());
@@ -27,7 +28,9 @@ public class IndividualCustomerConsumer {
         customer.setMotherName(customerCreatedEvent.getMotherName());
         customer.setNationalityNumber(customerCreatedEvent.getNationalityNumber());
         customer.setSecondName(customerCreatedEvent.getSecondName());
+
         LOGGER.info(String.format("IndividualCustomer consumed =>%s",customer.toString()));
+
         this.searchService.add(customer);
     }
 
