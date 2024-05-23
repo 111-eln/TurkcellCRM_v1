@@ -1,5 +1,6 @@
 package com.turkcell.TurkcellCRM.productService.core.configuration;
 
+import com.turkcell.TurkcellCRM.productService.core.crossCuttingConcerns.mapping.ModelMapperService;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,5 +32,6 @@ public class ApplicationConfig {
     public ModelMapper getModelMapper(){
         return new ModelMapper();
     }
+
 
 }

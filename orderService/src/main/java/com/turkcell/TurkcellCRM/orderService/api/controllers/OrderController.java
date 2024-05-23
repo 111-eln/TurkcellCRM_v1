@@ -1,18 +1,11 @@
 package com.turkcell.TurkcellCRM.orderService.api.controllers;
 
 import com.turkcell.TurkcellCRM.orderService.business.abstracts.OrderService;
-import com.turkcell.TurkcellCRM.orderService.business.abstracts.ProductService;
-import com.turkcell.TurkcellCRM.orderService.clients.IsCustomerExistClient;
 import com.turkcell.TurkcellCRM.orderService.dtos.requests.create.CreateOrderRequest;
-import com.turkcell.TurkcellCRM.orderService.dtos.requests.create.CreateProductRequest;
 import com.turkcell.TurkcellCRM.orderService.dtos.requests.update.UpdateOrderRequest;
-import com.turkcell.TurkcellCRM.orderService.dtos.requests.update.UpdateProductRequest;
 import com.turkcell.TurkcellCRM.orderService.dtos.responses.create.CreateOrderResponse;
-import com.turkcell.TurkcellCRM.orderService.dtos.responses.create.CreateProductResponse;
 import com.turkcell.TurkcellCRM.orderService.dtos.responses.get.GetOrderResponse;
-import com.turkcell.TurkcellCRM.orderService.dtos.responses.get.GetProductResponse;
 import com.turkcell.TurkcellCRM.orderService.dtos.responses.update.UpdateOrderResponse;
-import com.turkcell.TurkcellCRM.orderService.dtos.responses.update.UpdateProductResponse;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

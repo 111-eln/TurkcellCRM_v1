@@ -19,7 +19,7 @@ spring:
     password: 12345
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
@@ -28,12 +28,12 @@ spring:
           validation:
             mode: none
     show-sql: true
-#  kafka:
-#    producer:
-#      bootstrap-servers: localhost:9092
-#      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-#      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-#    springdoc:
-#      swagger-ui:
-#        disable-swagger-default-url: true
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    springdoc:
+      swagger-ui:
+        disable-swagger-default-url: true
 

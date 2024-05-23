@@ -24,6 +24,5 @@ public class Product extends BaseEntity {
     @Column(name = "unitOfStock")
     private int unitOfStock;
 
-//    @Column(name = "order_id")
-//    private int orderId;
+
 }

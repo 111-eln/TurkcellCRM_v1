@@ -9,16 +9,20 @@ import com.turkcell.TurkcellCRM.productService.core.crossCuttingConcerns.mapping
 import com.turkcell.TurkcellCRM.productService.dataAccess.ProductRepository;
 import com.turkcell.TurkcellCRM.productService.entities.Product;
 import com.turkcell.TurkcellCRM.productService.kafka.producers.ProductProducer;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
+@AllArgsConstructor
 public class ProductManager implements ProductService {
+
     private ModelMapperService modelMapperService;
     private ProductRepository productRepository;
     private ProductProducer productProducer;
     @Override
     public CreatedProductResponse add(CreateProductsRequest productsRequest) {
-        Product product=modelMapperService.forResponse().map(productsRequest, Product.class);
+        Product product=modelMapperService.forRequest().map(productsRequest, Product.class);
         Product dbProduct=productRepository.save(product);
         ProductCreatedEvent productCreatedEvent=modelMapperService.forResponse().map(dbProduct, ProductCreatedEvent.class);
         productProducer.sendMessage(productCreatedEvent);
@@ -33,7 +37,7 @@ public class ProductManager implements ProductService {
 
     @Override
     public CreatedProductResponse update(CreateProductsRequest productRequest,int id) {
-        Product product=modelMapperService.forResponse().map(productRequest, Product.class);
+        Product product=modelMapperService.forRequest().map(productRequest, Product.class);
         Product dbProduct=productRepository.save(product);
         dbProduct.setId(id);
         return modelMapperService.forResponse().map(dbProduct,CreatedProductResponse.class);
@@ -44,6 +48,8 @@ public class ProductManager implements ProductService {
         Product product=productRepository.findByTitle(productTitle);
         if(product.getUnitOfStock()>0){
             product.setUnitOfStock(product.getUnitOfStock()-1);
+            product.setId(product.getId());
+            productRepository.save(product);
             return true;
         }
         return false;

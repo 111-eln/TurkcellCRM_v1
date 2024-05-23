@@ -11,6 +11,8 @@ server:
   port: 9015
   #normalde buras? 0 olmal? her instance i�in otomatik port atamas? yapar
 spring:
+  main:
+    allow-bean-definition-overriding: true
   application:
     name: order-service
   datasource:

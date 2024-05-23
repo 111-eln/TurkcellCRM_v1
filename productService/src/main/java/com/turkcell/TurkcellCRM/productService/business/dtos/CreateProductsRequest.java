@@ -1,15 +1,11 @@
 package com.turkcell.TurkcellCRM.productService.business.dtos;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.antlr.v4.runtime.misc.NotNull;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Data
 public class CreateProductsRequest {
     @NotNull
     private String title;

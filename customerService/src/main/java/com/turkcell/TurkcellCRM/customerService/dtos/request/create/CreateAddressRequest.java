@@ -19,5 +19,8 @@ public class CreateAddressRequest {
 
     @NotNull
     private String addressDescription;
+    
+    @NotNull
+    private int customerId;
 
 }
