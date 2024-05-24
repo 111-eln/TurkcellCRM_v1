@@ -25,11 +25,12 @@ public class Account extends BaseEntity {
     @Column(name = "accountStatus")
     private String accountStatus;
 
+
     @Column(name = "accountNumber")
     private int accountNumber;
 
     @Column(name = "accountName")
-    private String accountName;
+    private int accountName;
 
     @Column(name = "adress_id")
     private int adressesId;

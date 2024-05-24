@@ -1,5 +1,6 @@
 package com.turkcell.TurkcellCRM.identityService.services.dtos;
 
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,4 +15,5 @@ public class RegisterRequest {
     private String email;
     private String firstName;
     private String lastName;
+
 }

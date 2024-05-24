@@ -1,5 +1,6 @@
 package com.turkcell.TurkcellCRM.identityService.entities;
 
+import com.turkcell.TurkcellCRM.identityService.enums.Roles;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,6 +30,8 @@ public class User implements UserDetails {
     private String firstName;
     @Column(name="lastName")
     private String lastName;
+    @Column(name="role")
+    private Roles role;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(

@@ -1,5 +1,6 @@
 package com.turkcell.TurkcellCRM.customerService.entities.concretes;
 
+import com.turkcell.TurkcellCRM.commonPackage.enums.Roles;
 import com.turkcell.TurkcellCRM.customerService.entities.enums.Gender;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -45,5 +46,7 @@ public class IndividualCustomer extends BaseCustomer {
 
     @Column(name = "nationalityId")
     private String nationalityNumber;
+    @Column(name = "role")
+    private Roles role;
 
 }

@@ -1,13 +1,17 @@
 package com.turkcell.TurkcellCRM.accountService.business.abstracts;
 
 
+import com.turkcell.TurkcellCRM.accountService.business.dtos.Requests.CreateAccountRequest;
+import com.turkcell.TurkcellCRM.accountService.business.dtos.Requests.UpdateAccountRequest;
+import com.turkcell.TurkcellCRM.accountService.business.dtos.Responses.CreateAccountResponse;
+import com.turkcell.TurkcellCRM.accountService.business.dtos.Responses.UpdateAccountResponse;
 import com.turkcell.TurkcellCRM.accountService.core.Account;
-import com.turkcell.TurkcellCRM.accountService.core.Order;
 
 import java.util.List;
 
 public interface AccountService {
-    Account add(Account account);
+    CreateAccountResponse add(CreateAccountRequest account);
+    UpdateAccountResponse update(UpdateAccountRequest accountRequest,int id);
     List<Account> getAll();
-    Order addOrderToAccount(Order order);
+    Account addOrderToAccount(Account account);
 }

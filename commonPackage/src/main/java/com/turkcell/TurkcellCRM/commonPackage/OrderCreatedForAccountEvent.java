@@ -5,15 +5,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderCreatedForAccountEvent {
-    @Column(name = "order_id")
+    private int addressId;
+    private int customerId;
     private int orderId;
 
-    @Column(name = "accountNumber")
-    private int accountNumber;
+
+    private List<Product> products;
 
 
 

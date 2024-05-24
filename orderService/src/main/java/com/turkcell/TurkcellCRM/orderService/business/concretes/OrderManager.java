@@ -72,6 +72,7 @@ public class OrderManager implements OrderService {
         OrderCreatedEvent orderCreatedEvent=modelMapperService.forResponse().map(dbOrder,OrderCreatedEvent.class);
         orderProducer.sendMessage(orderCreatedEvent);
         OrderCreatedForAccountEvent orderCreatedForAccountEvent=modelMapperService.forResponse().map(dbOrder,OrderCreatedForAccountEvent.class);
+        orderCreatedForAccountEvent.setOrderId(dbOrder.getId());
         orderForAccountProducer.sendMessage(orderCreatedForAccountEvent);
         return modelMapperService.forResponse().map(dbOrder, CreateOrderResponse.class);
     }

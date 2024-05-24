@@ -1,5 +1,6 @@
 package com.turkcell.TurkcellCRM.customerService.dtos.request.create;
 import com.turkcell.TurkcellCRM.commonPackage.Gender;
+import com.turkcell.TurkcellCRM.commonPackage.enums.Roles;
 import com.turkcell.TurkcellCRM.customerService.business.constant.Constant;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -30,6 +31,8 @@ public class CreateIndividualCustomerRequest {
     private String fatherName;
 
     private String motherName;
+
+    private Roles role;
 
     @NotNull
     @Size(min=11,max = 11)

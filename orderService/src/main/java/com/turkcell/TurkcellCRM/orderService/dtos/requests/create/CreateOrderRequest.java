@@ -12,10 +12,6 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class CreateOrderRequest {
-//    @NotNull
-//    private int accountId;
-
-
 
     @NotNull
     private int addressId;
