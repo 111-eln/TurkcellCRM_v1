@@ -9,7 +9,7 @@ import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Set;
 
-@Entity
+/*@Entity
 @Table(name="roles")
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,4 +30,4 @@ public class Role implements GrantedAuthority {
     public String getAuthority() {
         return this.name.toLowerCase();
     }
-}
+}*/

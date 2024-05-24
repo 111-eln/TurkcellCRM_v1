@@ -1,6 +1,6 @@
 package com.turkcell.TurkcellCRM.identityService.entities;
 
-import com.turkcell.TurkcellCRM.identityService.enums.Roles;
+import com.turkcell.TurkcellCRM.commonPackage.enums.Roles;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.List;
 import java.util.Set;
 
 
@@ -30,16 +31,19 @@ public class User implements UserDetails {
     private String firstName;
     @Column(name="lastName")
     private String lastName;
-    @Column(name="role")
-    private Roles role;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name="user_roles",
-            joinColumns = @JoinColumn(name="user_id"),
-            inverseJoinColumns = @JoinColumn(name="role_id")
-    )
-    private Set<Role> authorities;
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(
+//            name="user_roles",
+//            joinColumns = @JoinColumn(name="user_id"),
+//            inverseJoinColumns = @JoinColumn(name="role_id")
+//    )
+//    private Set<Role> authorities;
+
+    @Column(name = "roles")
+    @Enumerated(EnumType.STRING)
+    @JoinTable(name = "roles", joinColumns = @JoinColumn(name = "roleId"))
+    private List<Roles> authorities;
 
 
     @Override

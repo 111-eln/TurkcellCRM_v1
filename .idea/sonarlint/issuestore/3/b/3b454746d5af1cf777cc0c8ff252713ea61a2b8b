@@ -1,3 +1,15 @@
 
 t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(òç¥†ûÿÿÿÿ
 V	java:S125 "<This block of commented-out lines of code should be removed.(ÉËœ”üÿÿÿÿ
+
+java:S1128"_Remove this unused import 'org.springframework.security.authentication.AuthenticationProvider'.(±­¼üÿÿÿÿ8€ÌÛÜú1
+ˆ
+java:S1128	"fRemove this unused import 'org.springframework.security.authentication.dao.DaoAuthenticationProvider'.(Ã‚öþÿÿÿÿ8ÌÛÜú1
+‚
+java:S1128"eRemove this unused import 'org.springframework.security.config.annotation.web.builders.HttpSecurity'.(ƒµ‹Š8ÌÛÜú1
+
+java:S1128"rRemove this unused import 'org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer'.(Ç¼Î8‚ÌÛÜú1
+n
+java:S1128"QRemove this unused import 'org.springframework.security.web.SecurityFilterChain'.(Ï×ÜÌ8ƒÌÛÜú1
+Ž
+java:S1128"qRemove this unused import 'org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter'.(÷ìïŠ8ƒÌÛÜú1

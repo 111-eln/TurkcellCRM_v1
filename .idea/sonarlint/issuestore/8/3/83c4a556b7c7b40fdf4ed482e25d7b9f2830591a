@@ -1,24 +1,24 @@
 
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ñ†«¹
-L
-java:S1874&"1Remove this use of "setClaims"; it is deprecated.(æõíûúÿÿÿÿ
-G
-java:S1874'"2Remove this use of "setSubject"; it is deprecated.(ï³Ðv
-I
-java:S1874("3Remove this use of "setIssuedAt"; it is deprecated.(øÔ÷ò
-K
-java:S1874)"5Remove this use of "setExpiration"; it is deprecated.(–æƒ»
-F
-java:S1874*"0Remove this use of "signWith"; it is deprecated.(´º‹ø
-P
-java:S1874*":Remove this use of "SignatureAlgorithm"; it is deprecated.(´º‹ø
-P
-java:S1874*":Remove this use of "SignatureAlgorithm"; it is deprecated.(´º‹ø
-P
-java:S18740"5Remove this use of "setSigningKey"; it is deprecated.(‘‰±•ÿÿÿÿÿ
-Q
-java:S18742"6Remove this use of "parseClaimsJws"; it is deprecated.(ëÙ–ºýÿÿÿÿ
-E
-java:S18743"/Remove this use of "getBody"; it is deprecated.(ÊÄ¿Ì
-F
-java:S1128"0Remove this unused import 'io.jsonwebtoken.Jws'.(þœüê
+•	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ñ†«¹J$fb7f988f-0dd3-44b2-9af2-3297a3eaed64
+r
+java:S1874&"1Remove this use of "setClaims"; it is deprecated.(æõíûúÿÿÿÿJ$d84d107e-ad1e-4132-92fc-bb65161f3dc8
+m
+java:S1874'"2Remove this use of "setSubject"; it is deprecated.(ï³ÐvJ$09ccf19a-1758-4b08-90ba-58b77a45654f
+o
+java:S1874("3Remove this use of "setIssuedAt"; it is deprecated.(øÔ÷òJ$0b1d54bd-dff9-43c3-979c-a58f37250680
+q
+java:S1874)"5Remove this use of "setExpiration"; it is deprecated.(–æƒ»J$eb4dcfe1-de4b-4896-a863-c38342d8053b
+l
+java:S1874*"0Remove this use of "signWith"; it is deprecated.(´º‹øJ$24fb2f6f-6262-4415-aa9e-9fea717b6491
+v
+java:S1874*":Remove this use of "SignatureAlgorithm"; it is deprecated.(´º‹øJ$e93b1dda-5b62-4a56-b21e-c5b4b594e1a2
+v
+java:S1874*":Remove this use of "SignatureAlgorithm"; it is deprecated.(´º‹øJ$f71f3ac5-2f9f-48a1-9a7a-b559af0526ac
+v
+java:S18740"5Remove this use of "setSigningKey"; it is deprecated.(‘‰±•ÿÿÿÿÿJ$d8b4231b-aae2-4c07-af2f-de62d48cc948
+w
+java:S18742"6Remove this use of "parseClaimsJws"; it is deprecated.(ëÙ–ºýÿÿÿÿJ$7cdbcc88-5842-477f-bda4-37370aabb2aa
+k
+java:S18743"/Remove this use of "getBody"; it is deprecated.(ÊÄ¿ÌJ$88866e89-93ce-4b6e-a280-06a8a7e268f0
+l
+java:S1128"0Remove this unused import 'io.jsonwebtoken.Jws'.(þœüêJ$4796e6ac-4fda-460d-b6f8-70e8f0b73749

@@ -92,6 +92,11 @@
 			<version>0.0.1-SNAPSHOT</version>
 			<scope>compile</scope>
 		</dependency>
+        <dependency>
+            <groupId>com.turkcell.TurkcellCRM</groupId>
+            <artifactId>commonPackage</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>

@@ -2,6 +2,7 @@ package com.turkcell.TurkcellCRM.identityService.services.concretes;
 
 
 import com.turkcell.TurkcellCRM.CoreService.jwt.JwtService;
+import com.turkcell.TurkcellCRM.commonPackage.enums.Roles;
 import com.turkcell.TurkcellCRM.identityService.services.abstracts.AuthService;
 import com.turkcell.TurkcellCRM.identityService.services.abstracts.UserService;
 import com.turkcell.TurkcellCRM.identityService.services.dtos.LoginRequest;
@@ -14,6 +15,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 
 @RequiredArgsConstructor
@@ -46,6 +49,13 @@ public class AuthManager implements AuthService {
     @Override
     public boolean tokenControl(String token) {
         String username=jwtService.extractUsername(token);
+
+        List<String> list = jwtService.extractRoles(token);
+        for (int i = 0; i<list.size(); i++){
+            if (list.get(i).equals(Roles.USER.toString())){
+                return false;
+            }
+        }
         return jwtService.validateToken(token,username);
     }
 }
