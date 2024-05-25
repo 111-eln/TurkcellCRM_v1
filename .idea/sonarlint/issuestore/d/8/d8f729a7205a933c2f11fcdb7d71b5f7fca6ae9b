@@ -1,4 +1,4 @@
 
-t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ç±¨¬ûÿÿÿÿ
-I
-java:S1874".Remove this use of "Locale"; it is deprecated.(É‘ü‹úÿÿÿÿ
+š	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ç±¨¬ûÿÿÿÿJ$70659f6e-8984-4c9c-a404-75dfbd4b37d3
+o
+java:S1874".Remove this use of "Locale"; it is deprecated.(É‘ü‹úÿÿÿÿJ$2693af5b-8473-4c5f-bbff-94a8b244d2f2

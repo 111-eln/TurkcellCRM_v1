@@ -1,11 +1,8 @@
 package com.turkcell.TurkcellCRM.accountService.kafka.consumer;
 
 import com.turkcell.TurkcellCRM.accountService.business.abstracts.AccountService;
-import com.turkcell.TurkcellCRM.accountService.core.Account;
-import com.turkcell.TurkcellCRM.accountService.core.Order;
-import com.turkcell.TurkcellCRM.commonPackage.IndividualCustomerCreatedEvent;
+import com.turkcell.TurkcellCRM.accountService.core.entities.Account;
 import com.turkcell.TurkcellCRM.commonPackage.OrderCreatedForAccountEvent;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -14,10 +14,10 @@ public interface IndividualCustomerService {
     CreatedIndividualCustomerResponse add(CreateIndividualCustomerRequest customer, String authorizationHeader);// HttpServletRequest request);
 
     void delete(int id, String authorizationHeader);
-//    GetIndividualCustomerResponse getById(int id, String authorizationHeader);
+    GetIndividualCustomerResponse getById(int id, String authorizationHeader);
     UpdatedIndividualCustomerResponse update(UpdateIndividualCustomerRequest updateCustomerRequest, int customerId, String authorizationHeader);
     List<GetAllIndividualCustomerResponse> getAll(String authorizationHeader);
 
-    boolean getById2(int id);
+//    boolean getById2(int id);
 
 }

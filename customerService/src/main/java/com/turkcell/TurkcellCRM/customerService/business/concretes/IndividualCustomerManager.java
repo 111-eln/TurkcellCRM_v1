@@ -64,28 +64,30 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 
         currentCustomer.setDeleted(true);
         currentCustomer.setDeletedDate(LocalDateTime.now());
-    }
-    @Override
-    public boolean getById2(int id) {
 
-        Optional<IndividualCustomer> customer=individualCustomerRepository.findById(id);
-        if(customer.isPresent()){
-            return true;
-        }
-        return false;
+        this.individualCustomerRepository.save(currentCustomer);
     }
-
 //    @Override
-//    public GetIndividualCustomerResponse getById(int id, String authorizationHeader) {
+//    public boolean getById2(int id) {
 //
-//        individualCustomerBusinessRules.checkToken(authorizationHeader);
-//        individualCustomerBusinessRules.customerShouldBeExists(id);
-//
-//        IndividualCustomer individualCustomer = individualCustomerRepository.findById(id).get();
-//        GetIndividualCustomerResponse getCustomerResponse = modelMapperService.forResponse().map(individualCustomer, GetIndividualCustomerResponse.class);
-//
-//        return getCustomerResponse;
+//        Optional<IndividualCustomer> customer=individualCustomerRepository.findById(id);
+//        if(customer.isPresent()){
+//            return true;
+//        }
+//        return false;
 //    }
+
+    @Override
+    public GetIndividualCustomerResponse getById(int id, String authorizationHeader) {
+
+        individualCustomerBusinessRules.checkToken(authorizationHeader);
+        individualCustomerBusinessRules.customerShouldBeExists(id);
+
+        IndividualCustomer individualCustomer = individualCustomerRepository.findById(id).get();
+        GetIndividualCustomerResponse getCustomerResponse = modelMapperService.forResponse().map(individualCustomer, GetIndividualCustomerResponse.class);
+
+        return getCustomerResponse;
+    }
 
     @Transactional
     @Override
@@ -93,7 +95,7 @@ public class IndividualCustomerManager implements IndividualCustomerService {
 
         individualCustomerBusinessRules.checkToken(authorizationHeader);
         individualCustomerBusinessRules.customerShouldBeExists(customerId);
-        individualCustomerBusinessRules.checkMernis(modelMapperService.forRequest().map(updateCustomerRequest,CreateIndividualCustomerRequest.class)); //TODO: Buraya bakılacak
+//        individualCustomerBusinessRules.checkMernis(modelMapperService.forRequest().map(updateCustomerRequest,CreateIndividualCustomerRequest.class)); //TODO: Buraya bakılacak
 
         IndividualCustomer customerToUpdate = modelMapperService.forRequest().map(updateCustomerRequest, IndividualCustomer.class);
 

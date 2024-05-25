@@ -5,7 +5,7 @@ import com.turkcell.TurkcellCRM.accountService.business.dtos.Requests.CreateAcco
 import com.turkcell.TurkcellCRM.accountService.business.dtos.Requests.UpdateAccountRequest;
 import com.turkcell.TurkcellCRM.accountService.business.dtos.Responses.CreateAccountResponse;
 import com.turkcell.TurkcellCRM.accountService.business.dtos.Responses.UpdateAccountResponse;
-import com.turkcell.TurkcellCRM.accountService.core.Account;
+import com.turkcell.TurkcellCRM.accountService.core.entities.Account;
 
 import java.util.List;
 

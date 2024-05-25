@@ -14,10 +14,5 @@ public class OrderCreatedForAccountEvent {
     private int addressId;
     private int customerId;
     private int orderId;
-
-
     private List<Product> products;
-
-
-
 }

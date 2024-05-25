@@ -21,7 +21,6 @@ public class SecurityConfiguration {
         baseSecurityService.configureCoreSecurity(http);
         http
                 .authorizeHttpRequests(req -> req
-                        .requestMatchers(HttpMethod.DELETE, "/api/v1/test/**").hasAnyAuthority("admin")
                         .requestMatchers(HttpMethod.POST,"/individualcustomerservice/api/v1/customers").hasAnyAuthority(Roles.ADMIN.toString())
                         .anyRequest().permitAll()
                 );

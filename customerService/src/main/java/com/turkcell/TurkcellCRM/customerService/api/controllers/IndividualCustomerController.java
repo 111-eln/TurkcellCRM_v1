@@ -35,17 +35,17 @@ public class IndividualCustomerController {
     public UpdatedIndividualCustomerResponse update(@Valid @RequestBody UpdateIndividualCustomerRequest updateCustomerRequest, @PathVariable int customerId,@RequestHeader("Authorization") String request) {
         return customerService.update(updateCustomerRequest,customerId,request);
     }
+
+
+//    public boolean getById2(@PathVariable int id) {
+//        return customerService.getById2(id);
+//    }
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
+    public GetIndividualCustomerResponse getById(@PathVariable int id,@RequestHeader("Authorization") String request) {
+        return customerService.getById(id, request);
 
-    public boolean getById2(@PathVariable int id) {
-        return customerService.getById2(id);
     }
-
-//    public GetIndividualCustomerResponse getById(@PathVariable int id,@RequestHeader("Authorization") String request) {
-//        return customerService.getById2(id, request);
-//
-//    }
 
 
     @GetMapping

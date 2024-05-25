@@ -44,7 +44,7 @@ class IndividualCustomerManagerTest {
         modelMapper = new ModelMapper();
         modelMapperService=new ModelMapperManager(modelMapper);
         mernisService = mock(MernisService.class);
-        tokenControlClient=mock(TokenControlClient.class);
+        tokenControlClient = mock(TokenControlClient.class);
         rules = new IndividualCustomerBusinessRules(individualCustomerRepository, mernisService,tokenControlClient);
         kafkaTemplate = mock(KafkaTemplate.class);
         IndividualCustomerProducer producer = new IndividualCustomerProducer(kafkaTemplate);
