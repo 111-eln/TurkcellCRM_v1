@@ -2,15 +2,18 @@ package com.turkcell.TurkcellCRM.customerService.business.concretes;
 
 import com.turkcell.TurkcellCRM.customerService.adapter.MernisService;
 import com.turkcell.TurkcellCRM.customerService.business.rules.IndividualCustomerBusinessRules;
+import com.turkcell.TurkcellCRM.customerService.clients.TokenControlClient;
 import com.turkcell.TurkcellCRM.customerService.core.crossCuttingConcerns.exceptions.types.BusinessException;
 import com.turkcell.TurkcellCRM.customerService.core.crossCuttingConcerns.mapping.ModelMapperManager;
 import com.turkcell.TurkcellCRM.customerService.core.crossCuttingConcerns.mapping.ModelMapperService;
 import com.turkcell.TurkcellCRM.customerService.dataAccess.IndividualCustomerRepository;
 import com.turkcell.TurkcellCRM.customerService.dtos.request.create.CreateIndividualCustomerRequest;
+import com.turkcell.TurkcellCRM.customerService.dtos.request.update.UpdateIndividualCustomerRequest;
 import com.turkcell.TurkcellCRM.customerService.dtos.response.get.GetAllIndividualCustomerResponse;
 import com.turkcell.TurkcellCRM.customerService.entities.concretes.IndividualCustomer;
 import com.turkcell.TurkcellCRM.customerService.entities.enums.Gender;
 import com.turkcell.TurkcellCRM.customerService.kafka.producers.IndividualCustomerProducer;
+import org.hibernate.mapping.Any;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
@@ -29,7 +32,9 @@ class IndividualCustomerManagerTest {
     private IndividualCustomerRepository individualCustomerRepository;
     private KafkaTemplate<String, Object> kafkaTemplate;
     private ModelMapper modelMapper;
+    private ModelMapperService modelMapperService;
     private MernisService mernisService;
+    private TokenControlClient tokenControlClient;
     private IndividualCustomerBusinessRules rules;
 
 
@@ -37,43 +42,67 @@ class IndividualCustomerManagerTest {
     void setUp(){
         individualCustomerRepository = mock(IndividualCustomerRepository.class);
         modelMapper = new ModelMapper();
-        ModelMapperService modelMapperService = new ModelMapperManager(modelMapper);
+        modelMapperService=new ModelMapperManager(modelMapper);
         mernisService = mock(MernisService.class);
-        rules = new IndividualCustomerBusinessRules(individualCustomerRepository, mernisService);
+        tokenControlClient=mock(TokenControlClient.class);
+        rules = new IndividualCustomerBusinessRules(individualCustomerRepository, mernisService,tokenControlClient);
         kafkaTemplate = mock(KafkaTemplate.class);
         IndividualCustomerProducer producer = new IndividualCustomerProducer(kafkaTemplate);
         individualCustomerManager = new IndividualCustomerManager(individualCustomerRepository,modelMapperService,rules,producer);
+
     }
 
     @Test
     void deleteById(){
         when(individualCustomerRepository.findById(1)).thenReturn(Optional.of(new IndividualCustomer()));
-        individualCustomerManager.delete(1, );
+        when(tokenControlClient.tokenControl(anyString())).thenReturn(true);
+
+        individualCustomerManager.delete(1,"Authorization");
         assert true;
     }
+    @Test
+    void deleteWithUnAuthorizedException(){
+        when(individualCustomerRepository.findById(1)).thenReturn(Optional.of(new IndividualCustomer()));
+        when(tokenControlClient.tokenControl(anyString())).thenReturn(false);
 
+        assertThrows(BusinessException.class, () -> {
+            individualCustomerManager.delete(1,"Authorization" );
+        });
+    }
     @Test
     void deleteWithNotExistsId_ShouldThrowException(){
         when(individualCustomerRepository.findById(1)).thenReturn(Optional.empty());
 
         assertThrows(BusinessException.class, () -> {
-            individualCustomerManager.delete(1, );
+            individualCustomerManager.delete(1,"Authorization" );
         });
     }
 
     @Test
     void getById(){
         when(individualCustomerRepository.findById(1)).thenReturn(Optional.of(new IndividualCustomer()));
-        individualCustomerManager.getById(1, );
+        when(tokenControlClient.tokenControl(anyString())).thenReturn(true);
+
+        individualCustomerManager.getById(1,"Authorization" );
         assert true;
+    }
+    @Test
+    void getByIdWithUnAuthorizedException(){
+        when(individualCustomerRepository.findById(1)).thenReturn(Optional.of(new IndividualCustomer()));
+        when(tokenControlClient.tokenControl(anyString())).thenReturn(false);
+
+        assertThrows(BusinessException.class, () -> {
+            individualCustomerManager.getById(1,"Authorization" );
+        });
     }
 
     @Test
     void getByIdWithNotExistsId_ShouldThrowException(){
         when(individualCustomerRepository.findById(1)).thenReturn(Optional.empty());
+        when(tokenControlClient.tokenControl(anyString())).thenReturn(true);
 
         assertThrows(BusinessException.class, () -> {
-            individualCustomerManager.getById(1, );
+            individualCustomerManager.getById(1,"Authorization");
         });
 
     }
@@ -87,10 +116,17 @@ class IndividualCustomerManagerTest {
         list.add(customer1);
         list.add(customer2);
         when(individualCustomerRepository.findAll()).thenReturn(list);
-
-        List<GetAllIndividualCustomerResponse> result = individualCustomerManager.getAll();
+        when(tokenControlClient.tokenControl(anyString())).thenReturn(true);
+        List<GetAllIndividualCustomerResponse> result = individualCustomerManager.getAll("Authorization");
 
         assertEquals(2, result.size());
+    }
+    @Test
+    void getAllWithUnAuthorizedException(){
+        when(tokenControlClient.tokenControl(anyString())).thenReturn(false);
+        assertThrows(BusinessException.class, () -> {
+            individualCustomerManager.getAll("Authorization" );
+        });
     }
 
     @Test
@@ -98,7 +134,7 @@ class IndividualCustomerManagerTest {
         when(individualCustomerRepository.findAll()).thenReturn(new ArrayList<IndividualCustomer>());
 
         assertThrows(BusinessException.class, () -> {
-            individualCustomerManager.getAll();
+            individualCustomerManager.getAll("Authorization");
         });
     }
 
@@ -118,14 +154,7 @@ class IndividualCustomerManagerTest {
 
         CreateIndividualCustomerRequest request = new CreateIndividualCustomerRequest();
 
-        request.setBirthDate(customer.getBirthDate());
-        request.setFirstName(customer.getFirstName());
-        request.setSecondName("");
-        request.setLastName(customer.getLastName());
-        request.setNationalityNumber(customer.getNationalityNumber());
-        request.setGender(com.turkcell.TurkcellCRM.commonPackage.Gender.MALE);
-        request.setFatherName(customer.getFatherName());
-        request.setMotherName(customer.getMotherName());
+        modelMapperService.forRequest().map(request,IndividualCustomer.class);
 
         when(individualCustomerRepository.findByNationalityNumber("98765432102")).thenReturn(Optional.empty());
 
@@ -133,8 +162,16 @@ class IndividualCustomerManagerTest {
 
 
         when(mernisService.checkIsRealPerson(request)).thenReturn(true);
-
-        individualCustomerManager.add(request);
+        when(tokenControlClient.tokenControl(anyString())).thenReturn(true);
+        individualCustomerManager.add(request,"Authorization");
+    }
+    @Test
+    void addWithUnAuthorizedException(){
+        when(tokenControlClient.tokenControl(anyString())).thenReturn(false);
+        CreateIndividualCustomerRequest request = new CreateIndividualCustomerRequest();
+        assertThrows(BusinessException.class, () -> {
+            individualCustomerManager.add(request,"Authorization" );
+        });
     }
 
     @Test
@@ -152,20 +189,13 @@ class IndividualCustomerManagerTest {
 
         CreateIndividualCustomerRequest request = new CreateIndividualCustomerRequest();
 
-        request.setBirthDate(customer.getBirthDate());
-        request.setFirstName(customer.getFirstName());
-        request.setSecondName("");
-        request.setLastName(customer.getLastName());
-        request.setNationalityNumber(customer.getNationalityNumber());
-        request.setGender(com.turkcell.TurkcellCRM.commonPackage.Gender.MALE);
-        request.setFatherName(customer.getFatherName());
-        request.setMotherName(customer.getMotherName());
+        modelMapperService.forRequest().map(request,IndividualCustomer.class);
 
         when(individualCustomerRepository.findByNationalityNumber("12345678902")).thenReturn(Optional.of(new IndividualCustomer()));
         when(individualCustomerRepository.save(customer)).thenReturn(new IndividualCustomer());
 
         assertThrows(BusinessException.class, () -> {
-            individualCustomerManager.add(request);
+            individualCustomerManager.add(request,"Authorization");
         });
 
     }
@@ -185,23 +215,45 @@ class IndividualCustomerManagerTest {
 
         CreateIndividualCustomerRequest request = new CreateIndividualCustomerRequest();
 
-        request.setBirthDate(customer.getBirthDate());
-        request.setFirstName(customer.getFirstName());
-        request.setSecondName("");
-        request.setLastName(customer.getLastName());
-        request.setNationalityNumber(customer.getNationalityNumber());
-        request.setGender(com.turkcell.TurkcellCRM.commonPackage.Gender.MALE);
-        request.setFatherName(customer.getFatherName());
-        request.setMotherName(customer.getMotherName());
+        modelMapperService.forRequest().map(request,IndividualCustomer.class);
 
         when(individualCustomerRepository.findByNationalityNumber("98765432102")).thenReturn(Optional.empty());
-
         when(mernisService.checkIsRealPerson(request)).thenReturn(false);
 
         assertThrows(BusinessException.class, () -> {
-            individualCustomerManager.add(request);
+            individualCustomerManager.add(request,"Authorization");
         });
     }
+
+    @Test
+    void update(){
+        IndividualCustomer customer = new IndividualCustomer();
+
+        customer.setBirthDate(LocalDateTime.now());
+        customer.setNationalityNumber("12345678902");
+        customer.setFirstName("Deneme");
+        customer.setLastName("Deneme");
+        customer.setGender(Gender.MALE);
+        customer.setFatherName("Deneme");
+        customer.setMotherName("Deneme");
+
+        UpdateIndividualCustomerRequest request = new UpdateIndividualCustomerRequest();
+
+        modelMapperService.forRequest().map(request,IndividualCustomer.class);
+
+
+        when(individualCustomerRepository.findByNationalityNumber("98765432102")).thenReturn(Optional.of(new IndividualCustomer()));
+        when(individualCustomerRepository.findById(1)).thenReturn(Optional.of(new IndividualCustomer()));
+        when(individualCustomerRepository.save(customer)).thenReturn(new IndividualCustomer());
+
+        when(tokenControlClient.tokenControl(anyString())).thenReturn(true);
+
+        individualCustomerManager.update(request,1,"Autherization");
+
+    }
+
+
+
 
     // TODO: update için gerekli test fonksiyonlarını yaz
 }
