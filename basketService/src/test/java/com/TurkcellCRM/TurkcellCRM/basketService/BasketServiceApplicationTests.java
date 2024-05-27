@@ -1,4 +1,4 @@
-package com.turkcell.TurkcellCRM.basketService;
+package com.TurkcellCRM.TurkcellCRM.basketService;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
